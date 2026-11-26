@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><title>项目详情与证据定位 · 承星 HRM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/design.css">
+<style>
+/* ===== 页面内补充样式 ===== */
+.info3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.info3 .k{font-size:12px;color:var(--gray-l)}
+.info3 .v{margin-top:4px;color:var(--deep);font-size:13.5px}
+.mbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.mbar .sp{margin-left:auto;font-size:12px;color:var(--gray-l)}
+.pdf .pg .cap{font-size:12.5px;color:var(--gray);font-weight:600}
+.pdf .pg.ev::before{content:"证据页";position:absolute;left:8px;top:8px;font-size:10px;color:var(--amber-deep);background:var(--amber-bg);border:1px solid #E4CD9C;border-radius:4px;padding:1px 6px}
+.pdf .pg.hl::before{display:none}
+.pdfjump{display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap}
+.pdfjump .lb{font-size:12px;color:var(--gray-l)}
+.idx{display:flex;flex-direction:column;gap:8px}
+.idx .row{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:var(--r-md);padding:10px 12px;cursor:pointer;background:var(--white)}
+.idx .row:hover{border-color:var(--amber);background:var(--amber-bg)}
+.idx .row .t{font-size:13.5px;color:var(--deep);font-weight:600}
+.idx .row .d{font-size:12px;color:var(--gray-l);margin-top:2px}
+.idx .row .go{margin-left:auto;font-size:12px;color:var(--amber-deep);white-space:nowrap;flex:none}
+.idx .row.na{cursor:default}
+.idx .row.na:hover{border-color:var(--line);background:var(--white)}
+.idx .row.na .go{color:var(--gray-l)}
+.tb-c td,.tb-c th{padding:9px 10px;font-size:12.5px}
+.note-bar{display:flex;gap:8px;align-items:center;background:var(--white);border:1px dashed var(--line);border-radius:var(--r-md);padding:12px 16px;font-size:12.5px;color:var(--gray-l)}
+@media (max-width:1000px){.info3{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-page="evidence">
+<div class="app"><div class="main"><div class="wrap">
+
+<div class="crumb" data-crumb></div>
+
+<div class="page-h">
+  <h1>项目详情与证据定位</h1>
+  <span class="tag tag-info">企业工作项目</span>
+  <span class="tag">团队协作 · 4 人</span>
+  <span class="tag tag-green"><span class="dot" style="background:var(--green)"></span>已实际应用</span>
+  <div class="sub">项目「某品牌视觉升级」· 候选人 张一可 · 应聘 高级视觉设计师</div>
+  <div class="right">
+    <button class="btn btn-ghost btn-sm" onclick="CX.toast('问题已记录，将同步到评审备注')">记录问题</button>
+    <button class="btn btn-amber btn-sm" onclick="CX.toast('已标记待核实：候选人个人实际贡献范围')">标记待核实</button>
+    <button class="btn btn-pri btn-sm" onclick="CX.toast('已加入评审任务')">加入评审</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-h"><h3>项目基本信息</h3><span class="more">材料来源：候选人提交 · 作品集 PDF 50 页 · 解析完成 2026-11-25</span></div>
+  <div class="info3">
+    <div><div class="k">候选人角色</div><div class="v">视觉设计师 · 参与品牌视觉升级，协作团队 4 人</div></div>
+    <div><div class="k">负责内容</div><div class="v">视觉规范手册（第 15–24 页）与宣传物料延展设计</div></div>
+    <div><div class="k">成果证明</div><div class="v">PDF 作品集 + 应用截图 6 张（含线下应用场景 图 3）</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-h"><h3>项目概览</h3><span class="note-ai">AI 整理 · 可修正</span></div>
+  <div class="grid g4" style="gap:12px">
+    <div><div style="font-size:12px;color:var(--gray-l)">项目背景</div><div style="margin-top:4px;font-size:13.5px">企业品牌视觉整体升级，统一多业务线视觉表达</div></div>
+    <div><div style="font-size:12px;color:var(--gray-l)">项目目标</div><div style="margin-top:4px;font-size:13.5px">建立品牌视觉规范体系并落地到线上线下物料</div></div>
+    <div><div style="font-size:12px;color:var(--gray-l)">执行过程</div><div style="margin-top:4px;font-size:13.5px">主视觉提案 → 规范手册 → 应用延展 → 上线交付</div></div>
+    <div><div style="font-size:12px;color:var(--gray-l)">最终成果</div><div style="margin-top:4px;font-size:13.5px">规范手册 1 套、延展物料 20+ 项，2025 年 9 月上线</div></div>
+  </div>
+</div>
+
+<div class="grid g-21">
+  <div>
+    <div class="card">
+      <div class="card-h"><h3>原始材料预览</h3><span class="more">点击右侧证据可在此定位高亮</span></div>
+      <div class="mbar" data-chipgroup>
+        <span class="chip on" onclick="CX.chips(this)">作品集 PDF</span>
+        <span class="chip" onclick="CX.chips(this)">应用截图 ×6</span>
+        <span class="chip" onclick="CX.chips(this)">复盘文档</span>
+        <span class="sp">共 50 页 · 已定位证据 3 处 · 页码导航</span>
+      </div>
+      <div class="pdf">
+        <div class="pg ev hl" id="pg12"><div class="skel"></div><div class="skel s"></div><span class="cap">品牌主视觉</span><span class="no">第 12 页</span></div>
+        <div class="pg" id="pg14"><div class="skel"></div><div class="skel s"></div><span class="cap">设计过程草图</span><span class="no">第 14 页</span></div>
+        <div class="pg" id="pg16"><div class="skel"></div><div class="skel s"></div><span class="cap">标识系统构成</span><span class="no">第 16 页</span></div>
+        <div class="pg ev" id="pg18"><div class="skel"></div><div class="skel s"></div><span class="cap">视觉规范手册</span><span class="no">第 18 页</span></div>
+        <div class="pg" id="pg20"><div class="skel"></div><div class="skel s"></div><span class="cap">版式与字体规范</span><span class="no">第 20 页</span></div>
+        <div class="pg ev" id="pg22"><div class="skel"></div><div class="skel s"></div><span class="cap">应用延展</span><span class="no">第 22 页</span></div>
+        <div class="pg" id="pg24"><div class="skel"></div><div class="skel s"></div><span class="cap">物料清单</span><span class="no">第 24 页</span></div>
+        <div class="pg" id="pg26"><div class="skel"></div><div class="skel s"></div><span class="cap">项目复盘摘录</span><span class="no">第 26 页</span></div>
+      </div>
+      <div class="pdfjump">
+        <span class="lb">快速定位：</span>
+        <button class="btn btn-ghost btn-sm" onclick="CX.hl(12)">第 12 页 · 品牌主视觉</button>
+        <button class="btn btn-ghost btn-sm" onclick="CX.hl(18)">第 18 页 · 视觉规范</button>
+        <button class="btn btn-ghost btn-sm" onclick="CX.hl(22)">第 22 页 · 应用延展</button>
+        <button class="btn btn-ghost btn-sm" onclick="CX.toast('图 3 为线下应用场景实拍，暂以图片方式查看')">查看 图 3 · 线下应用场景</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>材料类型与定位方式</h3></div>
+      <table class="tb">
+        <tr><th>材料</th><th>类型</th><th>定位方式</th><th style="width:110px">状态</th></tr>
+        <tr><td>品牌视觉升级作品集</td><td>PDF · 50 页</td><td>页码定位（第 12 / 18 / 22 页）</td><td><span class="tag tag-green">已解析</span></td></tr>
+        <tr><td>应用实拍截图</td><td>图片 ×6</td><td>图片编号定位（图 3 线下应用场景）</td><td><span class="tag tag-green">已解析</span></td></tr>
+        <tr><td>项目复盘文档</td><td>DOCX</td><td>章节定位（团队协作 · 第 2 节）</td><td><span class="tag tag-info">已归档</span></td></tr>
+        <tr><td>动态视觉演示</td><td>视频</td><td>时间点定位（暂未提交）</td><td><span class="tag tag-amber">信息不足</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <div class="card">
+      <div class="card-h"><h3>证据索引</h3><span class="more">点击定位</span></div>
+      <div class="idx">
+        <div class="row" onclick="CX.hl(12)">
+          <div><div class="t">项目背景与主视觉</div><div class="d">PDF 第 12 页 · 品牌主视觉</div></div>
+          <span class="go">定位 ›</span>
+        </div>
+        <div class="row" onclick="CX.hl(18)">
+          <div><div class="t">视觉规范构建</div><div class="d">PDF 第 18 页 · 视觉规范手册</div></div>
+          <span class="go">定位 ›</span>
+        </div>
+        <div class="row" onclick="CX.hl(22)">
+          <div><div class="t">成果应用与落地</div><div class="d">PDF 第 22 页 · 应用延展（配合 图 3）</div></div>
+          <span class="go">定位 ›</span>
+        </div>
+        <div class="row na">
+          <div><div class="t">数据证明</div><div class="d">材料中未见量化业务数据</div></div>
+          <span class="go"><span class="tag tag-amber">信息不足</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>岗位能力关联</h3></div>
+      <table class="tb tb-c">
+        <tr><th>能力 / 重要程度</th><th>证据位置</th><th style="width:76px">核实</th></tr>
+        <tr><td>品牌视觉设计<br><span class="tag tag-info">核心</span></td><td><span class="ev-link" onclick="CX.hl(12)">PDF · 第 12 页</span><div style="font-size:11.5px;color:var(--gray-l)">品牌主视觉</div></td><td><span class="tag tag-gray">待核实</span></td></tr>
+        <tr><td>视觉规范构建<br><span class="tag tag-info">核心</span></td><td><span class="ev-link" onclick="CX.hl(18)">PDF · 第 18 页</span><div style="font-size:11.5px;color:var(--gray-l)">视觉规范手册</div></td><td><span class="tag tag-green">已确认</span></td></tr>
+        <tr><td>项目执行落地<br><span class="tag">重要</span></td><td><span class="ev-link" onclick="CX.hl(22)">PDF · 第 22 页</span><div style="font-size:11.5px;color:var(--gray-l)">应用延展 · 图 3</div></td><td><span class="tag tag-gray">待核实</span></td></tr>
+        <tr><td>动态视觉表达<br><span class="tag">重要</span></td><td><span style="color:var(--gray-l)">未发现明确动效案例</span></td><td><span class="tag tag-amber">不足</span></td></tr>
+        <tr><td>跨部门协作<br><span class="tag tag-gray">一般</span></td><td><span class="ev-link" onclick="CX.toast('复盘文档 · 团队协作 第 2 节，原型内以摘要呈现')">复盘文档 · 团队协作</span></td><td><span class="tag tag-gray">待核实</span></td></tr>
+      </table>
+      <div style="font-size:12px;color:var(--gray-l);margin-top:10px">关联为线索而非结论，请查看证据后判断。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>评审备注</h3><span class="more">可追溯</span></div>
+      <div class="tl">
+        <div class="ev on"><div class="h">规范手册结构完整，建议面试追问个人负责范围</div><div class="m">李一明 · 业务负责人 · 2026-11-26 10:12</div></div>
+        <div class="ev"><div class="h">已发起落地证明补充请求，等待候选人回复</div><div class="m">韩女士 · HR · 2026-11-26 09:40</div></div>
+      </div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:4px" onclick="CX.toast('请输入备注内容后保存（原型演示）')">添加备注</button>
+    </div>
+  </div>
+</div>
+
+<div class="note-bar">
+  <span class="tag tag-amber">本页要点</span>
+  <span>摘要与原始材料双向跳转；点击右侧证据可在左侧预览中定位高亮。业务负责人与专业面试官先核验 AI 整理是否准确，再给出评审意见。</span>
+</div>
+
+</div></div></div>
+<script src="assets/shell.js"></script>
+</body>
+</html>

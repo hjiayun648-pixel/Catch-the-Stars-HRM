@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><title>招聘决策汇总 · 承星 HRM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/design.css">
+<style>
+/* ===== 页面内补充样式 ===== */
+.decs{display:flex;flex-direction:column;gap:10px}
+.decs .radio-card{display:flex;gap:10px;align-items:flex-start}
+.decs .radio-card input{accent-color:var(--ink);width:15px;height:15px;margin-top:2px;flex:none;pointer-events:none}
+.decs .radio-card .tx b{margin-bottom:2px}
+.list{display:flex;flex-direction:column;gap:10px}
+.item{display:flex;gap:10px;align-items:center;background:var(--white);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.item .tx{flex:1;font-size:13.5px;color:var(--deep)}
+.item .tx small{display:block;font-size:12px;color:var(--gray-l);margin-top:2px}
+.meta{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--gray-l);background:var(--line-2);border-radius:8px;padding:10px 14px;margin:12px 0}
+.meta b{color:var(--deep);font-weight:600}
+.rule{display:flex;gap:8px;font-size:12.5px;color:var(--gray);margin-bottom:8px;line-height:1.5}
+.rule i{font-style:normal;color:var(--amber-deep);font-weight:700;flex:none}
+.note-bar{display:flex;gap:8px;align-items:center;background:var(--white);border:1px dashed var(--line);border-radius:var(--r-md);padding:12px 16px;font-size:12.5px;color:var(--gray-l)}
+</style>
+</head>
+<body data-page="decision">
+<div class="app"><div class="main"><div class="wrap">
+
+<div class="crumb" data-crumb></div>
+
+<div class="page-h">
+  <h1>招聘决策汇总</h1>
+  <span class="tag tag-amber"><span class="dot" style="background:var(--amber)"></span>待决策</span>
+  <div class="sub">张一可 · 高级视觉设计师 · 当前负责人 韩女士 · 品牌设计中心</div>
+  <div class="right">
+    <a class="btn btn-ghost btn-sm" href="review.html">查看评审过程</a>
+    <button class="btn btn-ghost btn-sm" onclick="CX.toast('决策记录已导出（含各角色独立意见）')">导出决策记录</button>
+  </div>
+</div>
+
+<div class="grid g-21">
+  <div>
+    <div class="card">
+      <div class="card-h"><h3>多角色评审结果</h3><span class="more">保留独立意见 · 不做加权合分</span></div>
+      <table class="tb">
+        <tr><th style="width:150px">角色</th><th style="width:130px">结论</th><th>意见摘要</th><th style="width:86px">引用证据</th></tr>
+        <tr>
+          <td>HR 初筛<br><span style="font-size:12px;color:var(--gray-l)">韩女士 · 11-24</span></td>
+          <td><span class="tag tag-green">通过</span></td>
+          <td>经验方向与岗位匹配，材料完整，沟通表达清晰，建议进入专业评审。</td>
+          <td class="num">2 处</td>
+        </tr>
+        <tr>
+          <td>业务负责人<br><span style="font-size:12px;color:var(--gray-l)">李一明 · 11-25</span></td>
+          <td><span class="tag tag-info">建议进入下一轮</span></td>
+          <td>品牌视觉与规范构建能力符合团队需要，落地案例需面试进一步确认。</td>
+          <td class="num">3 处</td>
+        </tr>
+        <tr>
+          <td>专业面试官<br><span style="font-size:12px;color:var(--gray-l)">陈建宏 · 11-26</span></td>
+          <td><span class="tag tag-amber">部分能力待确认</span></td>
+          <td>主视觉与规范手册判断为符合 / 部分符合；项目执行落地缺少个人贡献边界证明。</td>
+          <td class="num">4 处</td>
+        </tr>
+      </table>
+      <div style="font-size:12px;color:var(--gray-l);margin-top:10px">三方意见无冲突项；分歧集中在「个人实际贡献范围」，需面试追问后确认。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>评审共识</h3><span class="note-ai">AI 汇总 · 可修正</span></div>
+      <div class="list">
+        <div class="item"><span class="tag tag-green">共识 1</span><div class="tx">具备相关品牌视觉项目经验<small>三方一致：项目方向、视觉语言与高级视觉设计师岗位需求匹配</small></div></div>
+        <div class="item"><span class="tag tag-green">共识 2</span><div class="tx">有实际交付成果<small>规范手册与应用延展材料完整，可定位到作品集第 18 / 22 页</small></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>待确认问题</h3><span class="more">2 项</span></div>
+      <div class="list">
+        <div class="item"><span class="tag tag-amber">贡献范围</span><div class="tx">个人实际贡献范围<small>4 人团队协作，规范手册与延展设计的具体分工需面试确认</small></div><button class="btn btn-ghost btn-sm" onclick="CX.toast('已加入面试提纲：请说明你在规范手册中的具体分工')">面试追问</button></div>
+        <div class="item"><span class="tag tag-amber">落地证明</span><div class="tx">部分项目落地证明<small>自述已实际应用，缺少上线记录或业务方确认材料</small></div><button class="btn btn-ghost btn-sm" onclick="CX.toast('补充请求已发送至候选人端')">发起补充</button></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>面试反馈</h3><span class="more">记录留痕</span></div>
+      <div class="tl">
+        <div class="ev on"><div class="h">初面记录：作品讲解清晰，对规范体系有系统性认识</div><div class="m">陈建宏 · 2026-11-26 15:00 · 用时 45 分钟</div></div>
+        <div class="ev"><div class="h">追问结果：说明个人负责手册第 15–24 页，协作边界基本清楚</div><div class="m">陈建宏 · 2026-11-26 15:32</div></div>
+        <div class="ev"><div class="h">后续建议：补充上线物料清单与业务方确认，再定录用结论</div><div class="m">韩女士 · 2026-11-26 16:10</div></div>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="CX.toast('请输入面试反馈后保存（原型演示）')">添加反馈记录</button>
+    </div>
+  </div>
+
+  <div>
+    <div class="card">
+      <div class="card-h"><h3>招聘决策</h3><span class="more">由人作出</span></div>
+      <div data-radiogroup class="decs">
+        <label class="radio-card" onclick="CX.pick(this);CX.toast('已选择决策方向：进入下一轮')"><input type="radio" name="decision"><span class="tx"><b>进入下一轮</b><span>能力基本符合，安排下一轮面试或终面</span></span></label>
+        <label class="radio-card on" onclick="CX.pick(this);CX.toast('已选择决策方向：待补充材料')"><input type="radio" name="decision" checked><span class="tx"><b>待补充材料</b><span>存在证据缺口，需候选人补充落地证明</span></span></label>
+        <label class="radio-card" onclick="CX.pick(this);CX.toast('已选择决策方向：建议录用')"><input type="radio" name="decision"><span class="tx"><b>建议录用</b><span>各方一致认可，证据充分</span></span></label>
+        <label class="radio-card" onclick="CX.pick(this);CX.toast('已选择决策方向：结束招聘流程')"><input type="radio" name="decision"><span class="tx"><b>结束招聘流程</b><span>能力或意愿不匹配，归档并说明原因</span></span></label>
+      </div>
+      <div class="field" style="margin-top:14px"><label>决策说明 <b>*</b></label><textarea>专业评审与业务评审均认可品牌视觉与规范构建能力；项目执行落地的个人贡献与上线证明尚缺证据，先请候选人补充材料后再进入终面。</textarea></div>
+      <div class="meta"><span>决策人 <b>韩女士 · HR 负责人</b></span><span>决策时间 <b>2026-11-26</b></span><span>流程阶段 <b>专业评审后</b></span></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn btn-ghost" onclick="CX.toast('决策草稿已保存，未提交')">保存</button>
+        <button class="btn btn-pri" onclick="CX.toast('决策已记录：待补充材料 · 决策人 韩女士 · 2026-11-26')">确认决策</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>决策原则</h3></div>
+      <div class="rule"><i>01</i><span>保留各角色独立意见，汇总不覆盖原始判断，不做单一匹配分数。</span></div>
+      <div class="rule"><i>02</i><span>AI 可总结共识与分歧、生成追问建议，但录用决策必须由人作出。</span></div>
+      <div class="rule"><i>03</i><span>决策结论、理由、决策人与时间全程留痕，可回溯审计。</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>后续动作</h3></div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <button class="btn btn-pri" style="justify-content:center" onclick="CX.toast('补充材料请求已发送至候选人端')">发送补充材料请求</button>
+        <a class="btn btn-ghost" style="justify-content:center" href="candidates.html">返回候选人详情</a>
+      </div>
+      <div style="font-size:12px;color:var(--gray-l);margin-top:10px">候选人撤回材料授权后，原始作品将停止可见并按规定清理。</div>
+    </div>
+  </div>
+</div>
+
+<div class="note-bar">
+  <span class="tag tag-amber">数据关系</span>
+  <span>本页汇总 review.html 各角色提交的能力评价、证据引用与评审总结；评审意见修改后同步刷新共识与待确认问题，决策结果回写候选人流程阶段。</span>
+</div>
+
+</div></div></div>
+<script src="assets/shell.js"></script>
+</body>
+</html>

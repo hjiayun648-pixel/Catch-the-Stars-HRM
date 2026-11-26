@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><title>作品与成果评估 · 承星 HRM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/design.css">
+<style>
+.f-select{cursor:pointer}.f-select:hover{border-color:var(--amber-deep);color:var(--deep)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.tab-btn{padding:10px 18px;font-size:14px;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;user-select:none}
+.tab-btn.on{color:var(--deep);border-bottom-color:var(--amber);font-weight:700}
+/* 候选人能力卡 */
+.pc{display:flex;flex-direction:column;gap:12px;margin-bottom:0;transition:border-color .15s}
+.pc:hover{border-color:var(--amber-deep)}
+.pc .hd{display:flex;align-items:center;gap:12px}
+.pc .nm b{font-size:15px;color:var(--deep)}
+.pc .nm .sub{font-size:12px;color:var(--gray-l);margin-top:2px}
+.pc .hd .tag{margin-left:auto}
+.kw-row{display:flex;flex-wrap:wrap;gap:6px}
+.kw{display:inline-flex;align-items:center;gap:5px;background:var(--line-2);border:1px solid var(--line);border-radius:6px;padding:3px 10px;font-size:12px;color:var(--deep)}
+.kw i{font-style:normal;color:var(--gray-l);font-size:11px}
+.kw.verify{background:var(--amber-bg);border-color:var(--amber-line);color:var(--amber-deep)}
+.kw.other{border-style:dashed;color:var(--gray)}
+.pc .stat-line{display:flex;gap:16px;font-size:12.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:10px}
+.pc .stat-line b{color:var(--deep);font-variant-numeric:tabular-nums}
+.pc .ops{display:flex;gap:8px}
+/* 档案视图 */
+.proj{margin-bottom:0;display:flex;flex-direction:column;transition:border-color .15s}
+.proj:hover{border-color:var(--amber-deep)}
+.proj .hd{display:flex;align-items:flex-start;gap:10px}
+.proj .hd b{font-size:14.5px;color:var(--deep)}
+.proj .hd .who2{font-size:12px;color:var(--gray-l);margin-top:2px}
+.proj .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.proj .meta{font-size:12px;color:var(--gray-l);margin-top:10px}
+.proj .ops{display:flex;gap:8px;margin-top:12px}
+.proj .ops a{flex:1;text-align:center;border:1px solid var(--line);border-radius:6px;padding:6px 0;font-size:12.5px;color:var(--deep)}
+.proj .ops a:hover{border-color:var(--amber-deep);color:var(--amber-deep)}
+/* 维度配置 */
+.dim-row{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:8px;background:var(--white)}
+.dim-row b{font-size:13.5px;color:var(--deep)}
+.dim-row .ops{margin-left:auto;display:flex;gap:10px;font-size:12.5px;color:var(--gray)}
+.dim-row .ops a{cursor:pointer}
+.dim-row .ops a:hover{color:var(--amber-deep)}
+.list-foot{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--gray);margin-top:16px}
+.pager{display:flex;gap:6px;margin-left:auto}
+.pager .p{min-width:28px;height:28px;border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:var(--gray);cursor:pointer;background:var(--white)}
+.pager .p.on{background:var(--amber);border-color:var(--amber);color:#26221C;font-weight:700}
+</style>
+</head>
+<body data-page="outcomes">
+<div class="app"><div class="main"><div class="wrap">
+
+<div class="crumb" data-crumb></div>
+<div class="page-h">
+  <h1>作品与成果评估</h1>
+  <div class="sub">AI 从候选人提交的 PDF / PPT / 网页 / 代码中拆解关键词标签 · 能力维度按岗位配置、随时可增 · 无法归类的进入「其他」</div>
+  <div class="right">
+    <button class="btn btn-ghost btn-sm" onclick="CX.openModal('dimModal')">能力维度配置</button>
+    <button class="btn btn-pri btn-sm" onclick="CX.toast('批量解析队列：3 份材料解析中，2 份待确认')">解析队列 (5)</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <span class="tab-btn on" onclick="CX.tab(this,'pc')">候选人能力档案</span>
+  <span class="tab-btn" onclick="CX.tab(this,'ar')">项目档案视图</span>
+</div>
+
+<!-- ===== 视图一：候选人能力档案 ===== -->
+<div data-tabpane="pc">
+  <div class="filters">
+    <div class="f-input" style="min-width:240px">🔍 搜索候选人 / 关键词标签</div>
+    <div class="f-select" onclick="CX.toast('能力维度按岗位独立配置（原型演示）')">岗位：高级视觉设计师 ▾</div>
+    <div class="f-select" onclick="CX.toast('筛选：招聘阶段（原型演示）')">阶段：全部 ▾</div>
+    <span style="font-size:12.5px;color:var(--gray-l);margin-left:auto">该岗位候选人池 1,847 人 · 已解析 1,206 人</span>
+  </div>
+  <div class="grid g2">
+    <div class="card pc">
+      <div class="hd"><span class="ava ava-1">张</span><div class="nm"><b>张一可</b><div class="sub">高级视觉设计师 · 业务评审中 · 5 个项目</div></div><span class="tag tag-green">材料完整</span></div>
+      <div class="kw-row"><span class="kw">品牌视觉系统 <i>×6</i></span><span class="kw">视觉规范构建 <i>×4</i></span><span class="kw">营销物料延展 <i>×5</i></span><span class="kw">账号运营·2.3万粉 <i>×3</i></span><span class="kw verify">动态视觉 · 待核实</span><span class="kw other">其他 <i>×2</i></span></div>
+      <div class="stat-line"><span>已落地有成效 <b>3</b></span><span>落地中 <b>1</b></span><span>概念练习 <b>1</b></span><span>证据条目 <b>12</b></span><span>待核实 <b>2</b></span></div>
+      <div class="ops"><button class="btn btn-pri btn-sm" style="flex:1" onclick="prof('张一可')">查看能力画像</button><a class="btn btn-ghost btn-sm" href="canddetail.html" style="flex:1;justify-content:center">候选人详情</a></div>
+    </div>
+    <div class="card pc">
+      <div class="hd"><span class="ava ava-2">王</span><div class="nm"><b>王雨桐</b><div class="sub">高级视觉设计师 · 待初筛 · 3 个项目</div></div><span class="tag tag-gray">待解析 1 项</span></div>
+      <div class="kw-row"><span class="kw">动效设计 <i>×3</i></span><span class="kw">插画能力 <i>×2</i></span><span class="kw">课程概念方案 <i>×4</i></span><span class="kw verify">商业落地 · 仅自述</span><span class="kw other">其他 <i>×1</i></span></div>
+      <div class="stat-line"><span>已落地有成效 <b>0</b></span><span>落地中 <b>1</b></span><span>概念练习 <b>2</b></span><span>证据条目 <b>10</b></span><span>待核实 <b>1</b></span></div>
+      <div class="ops"><button class="btn btn-pri btn-sm" style="flex:1" onclick="prof('王雨桐')">查看能力画像</button><a class="btn btn-ghost btn-sm" href="canddetail.html" style="flex:1;justify-content:center">候选人详情</a></div>
+    </div>
+    <div class="card pc">
+      <div class="hd"><span class="ava ava-3">陈</span><div class="nm"><b>陈思远</b><div class="sub">高级视觉设计师 · 待初筛 · 2 个项目</div></div><span class="tag tag-green">材料完整</span></div>
+      <div class="kw-row"><span class="kw">城市形象设计 <i>×5</i></span><span class="kw">获奖认证·省级二等奖 <i>×2</i></span><span class="kw">独立完成 <i>×2</i></span><span class="kw other">其他 <i>×1</i></span></div>
+      <div class="stat-line"><span>已落地有成效 <b>1</b></span><span>落地中 <b>0</b></span><span>获奖认证 <b>1</b></span><span>证据条目 <b>9</b></span><span>待核实 <b>0</b></span></div>
+      <div class="ops"><button class="btn btn-pri btn-sm" style="flex:1" onclick="prof('陈思远')">查看能力画像</button><a class="btn btn-ghost btn-sm" href="canddetail.html" style="flex:1;justify-content:center">候选人详情</a></div>
+    </div>
+    <div class="card pc">
+      <div class="hd"><span class="ava ava-4">刘</span><div class="nm"><b>刘可欣</b><div class="sub">高级视觉设计师 · 专业面试 · 4 个项目</div></div><span class="tag tag-amber">待核实 2 项</span></div>
+      <div class="kw-row"><span class="kw">电商视觉体系 <i>×4</i></span><span class="kw">品牌延展 <i>×3</i></span><span class="kw">公益落地项目 <i>×2</i></span><span class="kw verify">实习贡献范围 · 待核实</span><span class="kw other">其他 <i>×2</i></span></div>
+      <div class="stat-line"><span>已落地有成效 <b>2</b></span><span>落地中 <b>1</b></span><span>概念练习 <b>1</b></span><span>证据条目 <b>11</b></span><span>待核实 <b>2</b></span></div>
+      <div class="ops"><button class="btn btn-pri btn-sm" style="flex:1" onclick="prof('刘可欣')">查看能力画像</button><a class="btn btn-ghost btn-sm" href="canddetail.html" style="flex:1;justify-content:center">候选人详情</a></div>
+    </div>
+    <div class="card pc">
+      <div class="hd"><span class="ava ava-5">赵</span><div class="nm"><b>赵一凡</b><div class="sub">高级视觉设计师 · 待初筛 · 1 个项目</div></div><span class="tag tag-amber">待补充</span></div>
+      <div class="kw-row"><span class="kw">校园活动主视觉 <i>×2</i></span><span class="kw verify">落地证明缺失</span><span class="kw other">其他 <i>×1</i></span></div>
+      <div class="stat-line"><span>已落地有成效 <b>0</b></span><span>概念练习 <b>1</b></span><span>证据条目 <b>2</b></span><span>待核实 <b>1</b></span></div>
+      <div class="ops"><button class="btn btn-pri btn-sm" style="flex:1" onclick="prof('赵一凡')">查看能力画像</button><a class="btn btn-ghost btn-sm" href="canddetail.html" style="flex:1;justify-content:center">候选人详情</a></div>
+    </div>
+    <div class="card pc">
+      <div class="hd"><span class="ava ava-2">李</span><div class="nm"><b>李承宇</b><div class="sub">高级视觉设计师 · 待初筛 · 2 个项目</div></div><span class="tag tag-gray">待解析 1 项</span></div>
+      <div class="kw-row"><span class="kw">网页视觉·在线作品集 <i>×3</i></span><span class="kw">前端实现能力 <i>×2</i></span><span class="kw other">其他 <i>×1</i></span></div>
+      <div class="stat-line"><span>已落地有成效 <b>1</b></span><span>落地中 <b>1</b></span><span>证据条目 <b>5</b></span><span>待核实 <b>0</b></span></div>
+      <div class="ops"><button class="btn btn-pri btn-sm" style="flex:1" onclick="prof('李承宇')">查看能力画像</button><a class="btn btn-ghost btn-sm" href="canddetail.html" style="flex:1;justify-content:center">候选人详情</a></div>
+    </div>
+  </div>
+  <div class="list-foot">
+    第 1–6 人 / 共 1,847 人 · 大规模候选人池依赖搜索、筛选与分页，AI 解析按队列批量处理
+    <div class="pager"><span class="p on">1</span><span class="p" onclick="CX.toast('原型演示：仅提供第 1 页数据')">2</span><span class="p" onclick="CX.toast('原型演示：仅提供第 1 页数据')">3</span><span class="p">…</span><span class="p">308</span></div>
+  </div>
+</div>
+
+<!-- ===== 视图二：项目档案 ===== -->
+<div data-tabpane="ar" style="display:none">
+  <div class="filters" data-chipgroup data-filter="src">
+    <div class="f-input" style="width:220px">🔍 搜索项目 / 关键词</div>
+    <span class="chip on" data-val="all" onclick="CX.chips(this)">全部</span>
+    <span class="chip" data-val="work" onclick="CX.chips(this)">企业工作</span>
+    <span class="chip" data-val="intern" onclick="CX.chips(this)">企业实习</span>
+    <span class="chip" data-val="biz" onclick="CX.chips(this)">个人商业实践</span>
+    <span class="chip" data-val="own" onclick="CX.chips(this)">个人自主创作</span>
+    <span class="chip" data-val="course" onclick="CX.chips(this)">课程与概念</span>
+    <span class="chip" data-val="contest" onclick="CX.chips(this)">竞赛获奖</span>
+    <span class="chip" data-val="other" onclick="CX.chips(this)">其他</span>
+  </div>
+  <div class="grid g3">
+    <div class="card proj" data-row-src="work"><div class="hd"><div><b>某品牌视觉升级</b><div class="who2">张一可 · 高级视觉设计师</div></div><span class="tag tag-green" style="margin-left:auto">已解析</span></div><div class="tags"><span class="tag">企业工作项目</span><span class="tag">团队协作</span><span class="tag tag-green">已落地有成效</span></div><div class="meta">12 条证据 · 作品集 PDF 50 页 · 更新于 2026-11-25</div><div class="ops"><a href="evidence.html">详情</a><a href="aireport.html">AI 报告</a></div></div>
+    <div class="card proj" data-row-src="biz"><div class="hd"><div><b>文创周边视觉延展</b><div class="who2">张一可 · 高级视觉设计师</div></div><span class="tag tag-green" style="margin-left:auto">已解析</span></div><div class="tags"><span class="tag">个人商业实践</span><span class="tag">独立完成</span><span class="tag tag-green">已落地有成效</span></div><div class="meta">8 条证据 · 作品集 PDF 22 页 · 更新于 2026-11-23</div><div class="ops"><a href="evidence.html">详情</a><a href="aireport.html">AI 报告</a></div></div>
+    <div class="card proj" data-row-src="course"><div class="hd"><div><b>品牌 App 改版课程项目</b><div class="who2">王雨桐 · 高级视觉设计师</div></div><span class="tag tag-gray" style="margin-left:auto">待解析</span></div><div class="tags"><span class="tag">课程与概念作品</span><span class="tag">团队协作</span><span class="tag tag-gray">概念练习</span></div><div class="meta">4 条证据 · PDF 18 页 · 材料接收于 2026-11-24</div><div class="ops"><a href="evidence.html">详情</a><a href="aireport.html">AI 报告</a></div></div>
+    <div class="card proj" data-row-src="own"><div class="hd"><div><b>国潮系列视觉实验</b><div class="who2">王雨桐 · 高级视觉设计师</div></div><span class="tag tag-green" style="margin-left:auto">已解析</span></div><div class="tags"><span class="tag">个人自主创作</span><span class="tag">独立完成</span><span class="tag tag-gray">概念练习</span></div><div class="meta">6 条证据 · 图片 ×24 · 更新于 2026-11-24</div><div class="ops"><a href="evidence.html">详情</a><a href="aireport.html">AI 报告</a></div></div>
+    <div class="card proj" data-row-src="contest"><div class="hd"><div><b>城市形象海报系列</b><div class="who2">陈思远 · 高级视觉设计师</div></div><span class="tag tag-green" style="margin-left:auto">已解析</span></div><div class="tags"><span class="tag">竞赛与获奖作品</span><span class="tag">独立完成</span><span class="tag tag-amber">省级二等奖</span></div><div class="meta">9 条证据 · 获奖证书已上传 · 更新于 2026-11-22</div><div class="ops"><a href="evidence.html">详情</a><a href="aireport.html">AI 报告</a></div></div>
+    <div class="card proj" data-row-src="intern"><div class="hd"><div><b>电商详情页视觉体系</b><div class="who2">刘可欣 · 高级视觉设计师</div></div><span class="tag tag-green" style="margin-left:auto">已解析</span></div><div class="tags"><span class="tag">企业实习项目</span><span class="tag">团队协作</span><span class="tag">落地中</span></div><div class="meta">7 条证据 · 作品集 PDF 31 页 · 更新于 2026-11-26</div><div class="ops"><a href="evidence.html">详情</a><a href="aireport.html">AI 报告</a></div></div>
+    <div class="card proj" data-row-src="own"><div class="hd"><div><b>公益视觉传达项目</b><div class="who2">刘可欣 · 高级视觉设计师</div></div><span class="tag tag-amber" style="margin-left:auto">待核实</span></div><div class="tags"><span class="tag">个人自主创作</span><span class="tag">独立完成</span><span class="tag tag-green">已落地有成效</span></div><div class="meta">5 条证据 · 落地证明待补充 · 更新于 2026-11-26</div><div class="ops"><a href="evidence.html">详情</a><a href="aireport.html">AI 报告</a></div></div>
+    <div class="card proj" data-row-src="other"><div class="hd"><div><b>个人网页设计作品站</b><div class="who2">李承宇 · 高级视觉设计师</div></div><span class="tag tag-green" style="margin-left:auto">已解析</span></div><div class="tags"><span class="tag" style="border-style:dashed">其他 · 无法归类</span><span class="tag">独立完成</span><span class="tag tag-green">已落地有成效</span></div><div class="meta">5 条证据 · 在线网页链接 · 更新于 2026-11-21</div><div class="ops"><a href="evidence.html">详情</a><a href="aireport.html">AI 报告</a></div></div>
+  </div>
+  <div style="font-size:12.5px;color:var(--gray-l);margin-top:4px">来源、落地状态、参与方式、核实状态可组合筛选；无法归入既有来源的项目进入「其他」，不强行分类、不丢弃。</div>
+</div>
+
+<!-- ===== 能力维度配置弹窗 ===== -->
+<div class="modal" id="dimModal">
+  <div class="hd"><h3>能力维度配置 · 高级视觉设计师</h3><span class="x" onclick="CX.closeModal('dimModal')">✕</span></div>
+  <div class="bd">
+    <div style="font-size:12.5px;color:var(--gray);margin-bottom:12px">每个岗位独立维护能力维度；AI 拆解的关键词标签自动归入维度，归不进的进入「其他」。不同岗位（后端/产品/运营…）使用各自维度，互不混用。</div>
+    <div class="dim-row"><b>品牌视觉设计</b><span class="tag tag-amber">核心</span><span style="font-size:12px;color:var(--gray-l)">31 人有关联证据</span><div class="ops"><a onclick="CX.toast('编辑维度（原型演示）')">编辑</a><a onclick="CX.toast('维度删除后标签进入「其他」')">删除</a></div></div>
+    <div class="dim-row"><b>视觉规范构建</b><span class="tag tag-amber">核心</span><span style="font-size:12px;color:var(--gray-l)">24 人有关联证据</span><div class="ops"><a onclick="CX.toast('编辑维度（原型演示）')">编辑</a><a onclick="CX.toast('维度删除后标签进入「其他」')">删除</a></div></div>
+    <div class="dim-row"><b>项目执行落地</b><span class="tag">重要</span><span style="font-size:12px;color:var(--gray-l)">28 人有关联证据</span><div class="ops"><a onclick="CX.toast('编辑维度（原型演示）')">编辑</a><a onclick="CX.toast('维度删除后标签进入「其他」')">删除</a></div></div>
+    <div class="dim-row"><b>动态视觉表达</b><span class="tag">重要</span><span style="font-size:12px;color:var(--gray-l)">17 人有关联证据</span><div class="ops"><a onclick="CX.toast('编辑维度（原型演示）')">编辑</a><a onclick="CX.toast('维度删除后标签进入「其他」')">删除</a></div></div>
+    <div class="dim-row"><b>跨部门协作</b><span class="tag tag-gray">一般</span><span style="font-size:12px;color:var(--gray-l)">21 人有关联证据</span><div class="ops"><a onclick="CX.toast('编辑维度（原型演示）')">编辑</a><a onclick="CX.toast('维度删除后标签进入「其他」')">删除</a></div></div>
+    <div class="dim-row" style="border-style:dashed"><b>其他 / 无法分类</b><span class="tag tag-gray">系统兜底 · 不可删除</span><span style="font-size:12px;color:var(--gray-l)">43 条标签</span></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <input class="in" placeholder="新增能力维度，如：3D 视觉能力" style="flex:1;height:36px;border:1px solid var(--line);border-radius:8px;padding:0 12px;font:inherit">
+      <button class="btn btn-pri btn-sm" onclick="CX.toast('已新增维度，后续解析标签自动归类')">添加</button>
+    </div>
+  </div>
+  <div class="ft"><button class="btn btn-ghost" onclick="CX.closeModal('dimModal')">关闭</button></div>
+</div>
+
+<!-- ===== 候选人画像抽屉 ===== -->
+<div class="drawer" id="profDrawer">
+  <div class="hd"><span class="ava ava-1" id="pdAva">张</span><h3 id="pdName">张一可 · 能力画像</h3><span class="x" onclick="CX.closeDrawer('profDrawer')">✕</span></div>
+  <div class="bd">
+    <div style="font-size:12px;color:var(--gray-l);margin-bottom:6px">应聘 高级视觉设计师 · 5 个项目 · 12 条证据 · 2 项待核实</div>
+    <div style="font-size:13px;font-weight:700;color:var(--deep);margin:10px 0 4px">AI 关键词标签（按能力维度归类）</div>
+    <div class="kw-row" style="margin-bottom:14px">
+      <span class="kw">品牌视觉系统 <i>×6 · 4 项已落地</i></span>
+      <span class="kw">视觉规范构建 <i>×4 · 手册 15–24 页</i></span>
+      <span class="kw">营销物料延展 <i>×5 · 已实际应用</i></span>
+      <span class="kw">账号运营 <i>×3 · 2.3 万粉</i></span>
+      <span class="kw verify">动态视觉 · 待核实</span>
+      <span class="kw other">其他 <i>×2</i></span>
+    </div>
+    <div style="font-size:13px;font-weight:700;color:var(--deep);margin:14px 0 8px">项目与实践经历</div>
+    <div class="prow" style="display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:10px"><div style="flex:1"><b style="font-size:13.5px;color:var(--deep);display:block">某品牌视觉升级</b><span style="font-size:12px;color:var(--gray-l)">企业工作项目 · 团队协作 · 规范手册与物料延展</span></div><span class="tag tag-green">已落地有成效</span><a class="btn btn-ghost btn-sm" href="evidence.html">证据</a></div>
+    <div style="display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:10px"><div style="flex:1"><b style="font-size:13.5px;color:var(--deep);display:block">文创周边视觉延展</b><span style="font-size:12px;color:var(--gray-l)">个人商业实践 · 独立完成 · 实际销售转化数据</span></div><span class="tag tag-green">已落地有成效</span><a class="btn btn-ghost btn-sm" href="aireport.html">报告</a></div>
+    <div style="display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:10px"><div style="flex:1"><b style="font-size:13.5px;color:var(--deep);display:block">自媒体设计账号</b><span style="font-size:12px;color:var(--gray-l)">个人商业实践 · 独立完成 · 10 个月 2.3 万粉</span></div><span class="tag tag-green">已落地有成效</span><a class="btn btn-ghost btn-sm" href="aireport.html">报告</a></div>
+    <div style="display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:10px"><div style="flex:1"><b style="font-size:13.5px;color:var(--deep);display:block">红点奖参赛作品集</b><span style="font-size:12px;color:var(--gray-l)">竞赛获奖 · 团队协作 · 获奖证明已上传</span></div><span class="tag tag-amber">获奖认证</span><a class="btn btn-ghost btn-sm" href="evidence.html">证据</a></div>
+    <div style="display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:10px"><div style="flex:1"><b style="font-size:13.5px;color:var(--deep);display:block">品牌概念设计（课程）</b><span style="font-size:12px;color:var(--gray-l)">课程与概念作品 · 独立完成 · 未实际落地</span></div><span class="tag tag-gray">概念练习</span><a class="btn btn-ghost btn-sm" href="aireport.html">报告</a></div>
+  </div>
+  <div class="ft"><a class="btn btn-ghost" href="canddetail.html">候选人详情</a><a class="btn btn-pri" href="review.html" style="flex:1;justify-content:center">发起评审</a></div>
+</div>
+
+</div></div></div>
+<script src="assets/shell.js"></script>
+<script>
+function prof(name){
+  document.getElementById('pdName').textContent = name + ' · 能力画像';
+  document.getElementById('pdAva').textContent = name.charAt(0);
+  CX.openDrawer('profDrawer');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><title>候选人详情 · 张一可 · 承星 HRM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/design.css">
+<style>
+/* 页面级补充样式（仅本页） */
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.tab-btn{padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13.5px;color:var(--gray);border:1px solid transparent;background:none;font-family:var(--font)}
+.tab-btn:hover{color:var(--deep);background:var(--line-2)}
+.tab-btn.on{background:var(--ink);color:#fff}
+.pcard{border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;background:var(--white);margin-bottom:12px}
+.pcard:last-child{margin-bottom:0}
+.pcard:hover{border-color:var(--ink)}
+.pcard .pt{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pcard .pt b{font-size:14px;color:var(--deep)}
+.pcard .pd{font-size:12.5px;color:var(--gray);margin:8px 0 12px;line-height:1.6}
+.pcard .pf{display:flex;gap:8px;align-items:center}
+.pcard .pm{margin-left:auto;font-size:11.5px;color:var(--gray-l)}
+.rev{border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;margin-bottom:12px}
+.rev:last-child{margin-bottom:0}
+.rev .rh{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.rev .rh b{font-size:13.5px;color:var(--deep)}
+.rev .rh .rl{font-size:12px;color:var(--gray-l)}
+.rev .rb{font-size:13px;color:var(--gray);line-height:1.7}
+.rev .rc{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--gray-l);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.kv{display:grid;grid-template-columns:96px 1fr;gap:10px 14px;font-size:13.5px}
+.kv .kk{color:var(--gray-l)}
+</style>
+</head>
+<body data-page="canddetail">
+<div class="app"><div class="main"><div class="wrap">
+
+<div class="crumb" data-crumb></div>
+<div class="page-h">
+  <span class="ava ava-1" style="width:46px;height:46px;font-size:17px">张</span>
+  <div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <h1>张一可</h1>
+      <span class="tag tag-amber"><span class="dot" style="background:var(--amber)"></span>业务评审中</span>
+      <span class="tag tag-green">材料基本完整</span>
+    </div>
+    <div class="sub">应聘 高级视觉设计师 · 品牌设计中心 · 联系方式 138****2076 · 投递时间 2026-11-13 · 招聘负责人 韩女士</div>
+  </div>
+  <div class="right">
+    <button class="btn btn-pri btn-sm" onclick="CX.toast('评审任务已分配至 李一明、陈建宏')">发起评审</button>
+    <a class="btn btn-ghost btn-sm" href="aireport.html">查看解析报告</a>
+    <button class="btn btn-ghost btn-sm" onclick="CX.toast('已发起补充材料请求：动效作品、落地证明')">更多</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-h"><h3>招聘流程</h3><span class="more">当前阶段：业务评审 · 已停留 6 天</span></div>
+  <div class="steps">
+    <div class="step done"><span class="n">✓</span><span class="t">初筛</span><span class="bar"></span></div>
+    <div class="step cur"><span class="n">2</span><span class="t">业务评审</span><span class="bar"></span></div>
+    <div class="step"><span class="n">3</span><span class="t">专业面试</span><span class="bar"></span></div>
+    <div class="step"><span class="n">4</span><span class="t">决策</span></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn on" onclick="CX.tab(this,'overview')">综合概览</button>
+  <button class="tab-btn" onclick="CX.tab(this,'projects')">项目成果</button>
+  <button class="tab-btn" onclick="CX.tab(this,'resume')">简历经历</button>
+  <button class="tab-btn" onclick="CX.tab(this,'reviews')">评审记录</button>
+</div>
+
+<!-- ===== 综合概览 ===== -->
+<div data-tabpane="overview">
+  <div class="grid g-21">
+    <div>
+      <div class="card">
+        <div class="card-h"><h3>成果概览</h3><span class="more">以项目成果为核心，不展示 AI 综合评分</span></div>
+        <div class="grid g3" style="gap:12px">
+          <div class="stat" style="box-shadow:none"><div class="k">已提交项目</div><div class="v">5<small>个</small></div><div class="d">作品集 PDF · 50 页</div></div>
+          <div class="stat" style="box-shadow:none"><div class="k">解析完成</div><div class="v">3<small>个</small></div><div class="d"><span class="up">2 个已生成证据定位</span></div></div>
+          <div class="stat" style="box-shadow:none"><div class="k">待补充 / 待核实</div><div class="v">2<small>个</small></div><div class="d" style="color:var(--amber-deep)">1 个待解析 · 1 个待核实</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><h3>代表性项目</h3><span class="more" style="cursor:pointer" onclick="CX.tab(document.querySelectorAll('.tab-btn')[1],'projects')">查看全部 5 个项目 ›</span></div>
+
+        <div class="pcard">
+          <div class="pt"><b>某品牌视觉升级</b><span class="tag">企业工作项目</span><span class="tag tag-gray">团队协作</span><span class="tag tag-green">已解析</span></div>
+          <div class="pd">企业品牌视觉整体升级，负责品牌标识延展与视觉规范手册（第 15–24 页），成果已应用于线上线下物料。</div>
+          <div class="pf">
+            <a class="btn btn-ghost btn-sm" href="evidence.html">查看详情</a>
+            <a class="btn btn-amber btn-sm" href="aireport.html">AI 解析</a>
+            <span class="pm">PDF 50 页 · 截图 6 张</span>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pt"><b>自媒体运营</b><span class="tag">个人商业实践</span><span class="tag tag-gray">独立完成</span><span class="tag tag-green">已解析</span></div>
+          <div class="pd">独立运营设计类账号，负责选题、封面视觉与内容排版，10 个月沉淀 2.3 万粉丝与 3 次品牌合作。</div>
+          <div class="pf">
+            <a class="btn btn-ghost btn-sm" href="evidence.html">查看详情</a>
+            <a class="btn btn-amber btn-sm" href="aireport.html">AI 解析</a>
+            <span class="pm">后台数据截图 · 封面合集</span>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pt"><b>品牌概念设计</b><span class="tag">课程与概念</span><span class="tag tag-gray">独立完成</span><span class="tag tag-amber">待核实</span></div>
+          <div class="pd">课程阶段的完整品牌概念项目，含调研、视觉系统与提案，未投入实际商业使用。</div>
+          <div class="pf">
+            <a class="btn btn-ghost btn-sm" href="evidence.html">查看详情</a>
+            <a class="btn btn-amber btn-sm" href="aireport.html">AI 解析</a>
+            <span class="pm">概念提案 · 未落地</span>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pt"><b>红点奖参赛作品集</b><span class="tag">竞赛获奖</span><span class="tag tag-gray">团队协作</span><span class="tag tag-amber">待核实</span></div>
+          <div class="pd">参与 2025 红点设计概念奖参赛包，负责展板视觉与作品呈现，个人贡献范围需核实。</div>
+          <div class="pf">
+            <a class="btn btn-ghost btn-sm" href="evidence.html">查看详情</a>
+            <a class="btn btn-amber btn-sm" href="aireport.html">AI 解析</a>
+            <span class="pm">获奖证书待验证</span>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pt"><b>朋友店铺品牌视觉</b><span class="tag">个人自主创作</span><span class="tag tag-gray">独立完成</span><span class="tag tag-gray">待解析</span></div>
+          <div class="pd">为线下咖啡门店完成招牌、菜单与包装视觉，已实际使用，材料为实拍照片。</div>
+          <div class="pf">
+            <a class="btn btn-ghost btn-sm" href="evidence.html">查看详情</a>
+            <button class="btn btn-amber btn-sm" onclick="CX.toast('已加入解析队列，预计 3 分钟完成')">AI 解析</button>
+            <span class="pm">实拍照片 12 张</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-h"><h3>岗位关联</h3></div>
+        <table class="tb" style="font-size:12.5px">
+          <tr><th>能力</th><th>对应项目</th><th>证据</th></tr>
+          <tr><td>品牌视觉设计</td><td>品牌视觉升级</td><td><a class="ev-link" href="evidence.html">PDF 第 12 页</a></td></tr>
+          <tr><td>视觉规范构建</td><td>品牌视觉升级</td><td><a class="ev-link" href="evidence.html">手册第 15–24 页</a></td></tr>
+          <tr><td>项目执行落地</td><td>朋友店铺品牌视觉</td><td><a class="ev-link" href="evidence.html">实拍图 3–7</a></td></tr>
+          <tr><td>动态视觉表达</td><td><span style="color:var(--gray-l)">未发现明确案例</span></td><td><span style="color:var(--gray-l)">信息不足</span></td></tr>
+          <tr><td>跨部门协作</td><td>红点奖参赛作品集</td><td><a class="ev-link" href="evidence.html">参赛说明</a></td></tr>
+        </table>
+        <div style="font-size:12px;color:var(--gray-l);margin-top:10px">关联为线索而非结论，请查看证据后判断。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><h3>招聘流程记录</h3><span class="more">可追溯</span></div>
+        <div class="tl">
+          <div class="ev on"><div class="h">业务评审中 · 李一明已查看 2 个项目</div><div class="m">2026-11-24 10:20 · 待提交评审意见</div></div>
+          <div class="ev"><div class="h">初筛通过，进入业务评审</div><div class="m">韩女士 · 2026-11-15 09:12</div></div>
+          <div class="ev"><div class="h">候选人提交 5 个项目成果材料</div><div class="m">张一可 · 2026-11-13 20:41</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+          <a class="btn btn-ghost btn-sm" style="justify-content:center" href="outcomes.html">在成果评估查看全部项目</a>
+          <a class="btn btn-ghost btn-sm" style="justify-content:center" href="review.html">进入专业评审工作台</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 项目成果 ===== -->
+<div data-tabpane="projects" style="display:none">
+  <div class="card">
+    <div class="card-h"><h3>项目成果（5）</h3><span class="more">以项目为中心管理，可跳转成果评估维护</span></div>
+    <div class="filters" data-chipgroup data-filter="src">
+      <span class="chip on" data-val="all" onclick="CX.chips(this)">全部</span>
+      <span class="chip" data-val="work" onclick="CX.chips(this)">企业工作项目</span>
+      <span class="chip" data-val="self" onclick="CX.chips(this)">个人实践与创作</span>
+      <span class="chip" data-val="course" onclick="CX.chips(this)">课程与概念</span>
+      <span class="chip" data-val="award" onclick="CX.chips(this)">竞赛获奖</span>
+    </div>
+    <div class="grid g2" style="gap:12px">
+      <div class="pcard" data-row-src="work" style="margin-bottom:0">
+        <div class="pt"><b>某品牌视觉升级</b><span class="tag tag-green">已解析</span></div>
+        <div class="pd">企业工作项目 · 团队协作（4 人设计组）· 已实际应用 2025-09 上线</div>
+        <div class="pf"><a class="btn btn-ghost btn-sm" href="evidence.html">证据定位</a><a class="btn btn-amber btn-sm" href="aireport.html">解析报告</a><span class="pm">PDF 50 页</span></div>
+      </div>
+      <div class="pcard" data-row-src="self" style="margin-bottom:0">
+        <div class="pt"><b>自媒体运营</b><span class="tag tag-green">已解析</span></div>
+        <div class="pd">个人商业实践 · 独立完成 · 2.3 万粉丝 / 3 次品牌合作</div>
+        <div class="pf"><a class="btn btn-ghost btn-sm" href="evidence.html">证据定位</a><a class="btn btn-amber btn-sm" href="aireport.html">解析报告</a><span class="pm">数据截图 9 张</span></div>
+      </div>
+      <div class="pcard" data-row-src="course" style="margin-bottom:0">
+        <div class="pt"><b>品牌概念设计</b><span class="tag tag-amber">待核实</span></div>
+        <div class="pd">课程与概念 · 独立完成 · 未投入实际使用，需确认是否计入品牌经验</div>
+        <div class="pf"><a class="btn btn-ghost btn-sm" href="evidence.html">证据定位</a><button class="btn btn-ghost btn-sm" onclick="CX.toast('已记录待核实：概念项目与实际项目区分')">记录待核实</button></div>
+      </div>
+      <div class="pcard" data-row-src="award" style="margin-bottom:0">
+        <div class="pt"><b>红点奖参赛作品集</b><span class="tag tag-amber">待核实</span></div>
+        <div class="pd">竞赛获奖 · 团队协作 · 获奖证书与个人贡献范围待验证</div>
+        <div class="pf"><a class="btn btn-ghost btn-sm" href="evidence.html">证据定位</a><button class="btn btn-ghost btn-sm" onclick="CX.toast('补充请求已发送至候选人端：请上传官方获奖名单')">发起补充</button></div>
+      </div>
+      <div class="pcard" data-row-src="self" style="margin-bottom:0">
+        <div class="pt"><b>朋友店铺品牌视觉</b><span class="tag tag-gray">待解析</span></div>
+        <div class="pd">个人自主创作 · 独立完成 · 已实际使用，材料为实拍照片</div>
+        <div class="pf"><a class="btn btn-ghost btn-sm" href="evidence.html">证据定位</a><button class="btn btn-amber btn-sm" onclick="CX.toast('已加入解析队列，预计 3 分钟完成')">发起解析</button></div>
+      </div>
+      <div class="pcard" style="margin-bottom:0;border-style:dashed;display:flex;align-items:center;justify-content:center;min-height:110px;cursor:pointer" onclick="CX.toast('项目材料由候选人提交，HR 端可发起补充请求')">
+        <span style="color:var(--gray-l);font-size:13px">+ 请求候选人补充项目材料</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 简历经历 ===== -->
+<div data-tabpane="resume" style="display:none">
+  <div class="grid g-21">
+    <div>
+      <div class="card">
+        <div class="card-h"><h3>工作经历</h3><span class="more">来自简历解析</span></div>
+        <div class="tl">
+          <div class="ev on">
+            <div class="h">杨帆科技 · UX 高级设计师 <span class="tag tag-gray" style="margin-left:6px">2023.06 – 2025.09</span></div>
+            <div class="m">负责品牌视觉升级与产品推广物料设计，主导视觉规范手册编写；参与 4 人设计组协作，与市场营销部对接活动视觉。</div>
+          </div>
+          <div class="ev">
+            <div class="h">星野文化传媒 · 视觉设计师 <span class="tag tag-gray" style="margin-left:6px">2020.07 – 2023.05</span></div>
+            <div class="m">承担线下活动主视觉与延展物料设计，负责搭建对接与现场视觉执行；累计交付 30+ 场活动视觉方案。</div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--gray-l);margin-top:6px">简历中的经历描述为候选人自述，与项目成果不一致时以证据材料为准。</div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>项目经历摘要</h3></div>
+        <table class="tb">
+          <tr><th>项目</th><th>角色</th><th>时间</th><th>材料</th></tr>
+          <tr><td>某品牌视觉升级</td><td>视觉设计师</td><td>2025.03 – 2025.09</td><td><a class="ev-link" href="evidence.html">PDF · 50 页</a></td></tr>
+          <tr><td>自媒体运营</td><td>主理人</td><td>2024.01 – 至今</td><td><a class="ev-link" href="evidence.html">数据截图</a></td></tr>
+          <tr><td>朋友店铺品牌视觉</td><td>独立设计</td><td>2024.06 – 2024.08</td><td><a class="ev-link" href="evidence.html">实拍 12 张</a></td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-h"><h3>基本信息</h3><span class="more" style="cursor:pointer" onclick="CX.toast('简历原件已在新窗口打开')">查看简历原件</span></div>
+        <div class="kv">
+          <span class="kk">姓名</span><span>张一可</span>
+          <span class="kk">联系方式</span><span>138****2076</span>
+          <span class="kk">邮箱</span><span>zhangyike@mail.com</span>
+          <span class="kk">所在城市</span><span>杭州</span>
+          <span class="kk">学历</span><span>本科 · 视觉传达设计</span>
+          <span class="kk">工作年限</span><span>5 年</span>
+          <span class="kk">当前状态</span><span>离职，可 2 周内到岗</span>
+          <span class="kk">期望岗位</span><span>高级视觉设计师</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>教育与授权</h3></div>
+        <div style="font-size:13px;color:var(--gray);line-height:1.9">
+          2016.09 – 2020.06　浙江理工大学 · 视觉传达设计（本科）<br>
+          材料授权：仅用于本次招聘评估<br>
+          保留期限：投递后 12 个月<br>
+          <span style="color:var(--green)">候选人未撤回授权</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 评审记录 ===== -->
+<div data-tabpane="reviews" style="display:none">
+  <div class="card">
+    <div class="card-h"><h3>评审意见（3）</h3><span class="more">保留各方独立意见，不做加权总分</span></div>
+
+    <div class="rev">
+      <div class="rh"><span class="ava ava-s ava-1">韩</span><b>韩女士 · HR 负责人</b><span class="tag tag-green">初筛通过</span><span class="rl">初筛 · 2026-11-15 09:12</span></div>
+      <div class="rb">5 个项目中 2 个为企业实际落地项目，材料完整度高于同批候选人；自媒体运营体现独立交付能力。建议进入业务评审，重点确认品牌规范类经验深度。</div>
+      <div class="rc">引用证据：<a class="ev-link" href="evidence.html">品牌视觉升级 · 手册第 15–24 页</a><a class="ev-link" href="evidence.html">自媒体后台数据截图</a></div>
+    </div>
+
+    <div class="rev">
+      <div class="rh"><span class="ava ava-s ava-4">李</span><b>李一明 · 业务负责人（设计中心总监）</b><span class="tag tag-info">建议进入专业评审</span><span class="rl">业务评审 · 2026-11-24 16:05</span></div>
+      <div class="rb">品牌主视觉与规范延展与我们当前业务匹配度高，落地实拍材料可信。存疑两点：动态视觉作品缺失；红点奖项目中个人贡献范围不清晰，需专业面试追问。</div>
+      <div class="rc">引用证据：<a class="ev-link" href="evidence.html">PDF 第 12 页 品牌主视觉</a><a class="ev-link" href="evidence.html">应用实拍 图 3</a><span style="color:var(--amber-deep)">待追问：动效能力、竞赛个人贡献</span></div>
+    </div>
+
+    <div class="rev" style="background:var(--line-2)">
+      <div class="rh"><span class="ava ava-s ava-2">陈</span><b>陈建宏 · 专业面试官（资深设计专家）</b><span class="tag tag-gray">待评审</span><span class="rl">专业面试 · 未开始</span></div>
+      <div class="rb" style="color:var(--gray-l)">尚未提交评审意见。评审任务已于 2026-11-25 分配，建议围绕视觉规范构建与项目执行落地两项能力查看原始作品。</div>
+      <div class="rc"><button class="btn btn-ghost btn-sm" onclick="CX.toast('提醒已发送至 陈建宏')">催办评审</button><a class="btn btn-ghost btn-sm" href="review.html">进入评审工作台</a></div>
+    </div>
+
+    <div style="margin-top:14px;display:flex;gap:10px">
+      <button class="btn btn-pri" onclick="CX.toast('评审任务已重新分配并通知相关人')">发起评审</button>
+      <a class="btn btn-ghost" href="decision.html">查看决策汇总</a>
+    </div>
+  </div>
+</div>
+
+</div></div></div>
+<script src="assets/shell.js"></script>
+</body>
+</html>

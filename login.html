@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><title>登录 · 承星 HRM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/design.css">
+<style>
+/* ===== 页面内补充：全屏左右分栏 ===== */
+.login{display:flex;min-height:100vh}
+.login-l{width:58%;background:radial-gradient(900px 620px at 28% 18%,rgba(217,164,65,.18),transparent 60%),#211C15;color:#F2EDE2;padding:56px 64px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.l-logo{display:flex;align-items:center;gap:12px}
+.l-mark{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.14);position:relative;flex:none}
+.l-mark::after{content:"";position:absolute;left:50%;top:50%;width:13px;height:13px;transform:translate(-50%,-50%) rotate(45deg);background:var(--amber);border-radius:2.5px}
+.l-logo b{font-size:19px;letter-spacing:.5px}
+.l-hero{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:520px}
+.l-hero h1{font-size:40px;font-weight:800;letter-spacing:1px}
+.l-hero .l-sub{font-size:16px;color:rgba(255,255,255,.75);margin-top:12px}
+.l-feats{margin-top:44px;display:flex;flex-direction:column;gap:20px}
+.l-feat{display:flex;align-items:center;gap:14px}
+.l-ic{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex:none}
+.l-ic svg{width:20px;height:20px}
+.l-feat b{font-size:14.5px;display:block}
+.l-feat span{font-size:12.5px;color:rgba(255,255,255,.6)}
+.l-foot{font-size:12px;color:rgba(255,255,255,.45)}
+.login-r{flex:1;background:var(--white);display:flex;align-items:center;justify-content:center;padding:32px}
+.lform{width:100%;max-width:360px}
+.lform h2{font-size:22px;color:var(--deep)}
+.lform .tip{font-size:13px;color:var(--gray-l);margin:6px 0 22px}
+.ltabs{display:flex;gap:20px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.ltab{padding:0 2px 10px;font-size:14px;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;user-select:none}
+.ltab.on{color:var(--deep);border-bottom-color:var(--amber);font-weight:700}
+.lrow{display:flex;justify-content:space-between;align-items:center;margin:2px 0 18px;font-size:13px}
+.lrow a{color:var(--gray-l)}
+.lrow a:hover{color:var(--ink)}
+.l-reg{text-align:center;font-size:13px;color:var(--gray-l);margin-top:20px}
+.l-reg a{color:var(--ink);font-weight:600}
+@media (max-width:900px){.login-l{display:none}.login-r{background:var(--bg)}}
+</style>
+</head>
+<body>
+
+<div class="login">
+  <!-- 左：品牌区 -->
+  <div class="login-l">
+    <div class="l-logo"><div class="l-mark"></div><b>承星 HRM</b></div>
+    <div class="l-hero">
+      <h1>承星 HRM</h1>
+      <div class="l-sub">面向成果型人才招聘的智能招聘与协同评审平台</div>
+      <div class="l-feats">
+        <div class="l-feat">
+          <div class="l-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#D9A441" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+          <div><b>成果结构化识别</b><span>作品集与项目成果自动拆解为六维结构化档案</span></div>
+        </div>
+        <div class="l-feat">
+          <div class="l-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#D9A441" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></div>
+          <div><b>AI 解析与证据定位</b><span>每条结论可回溯到原始材料的页码与截图位置</span></div>
+        </div>
+        <div class="l-feat">
+          <div class="l-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#D9A441" stroke-width="2"><circle cx="9" cy="8" r="3.4"/><path d="M3 20c0-3.4 2.7-5 6-5s6 1.6 6 5"/><path d="M17 8h5M17 12h5M17 16h3"/></svg></div>
+          <div><b>多角色协同评审</b><span>HR、业务负责人与专业面试官同屏留痕协作</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="l-foot">概念设计原型 · 页面数据均为模拟</div>
+  </div>
+
+  <!-- 右：登录表单 -->
+  <div class="login-r">
+    <div class="lform">
+      <a href="index.html" style="font-size:13px;color:var(--gray-l);display:inline-block;margin-bottom:14px">‹ 返回产品介绍</a>
+      <h2>欢迎登录</h2>
+      <div class="tip">登录后进入招聘工作台 · 承星科技有限公司</div>
+      <div class="ltabs">
+        <span class="ltab on" id="tab-pwd" onclick="loginTab('pwd')">账号登录</span>
+        <span class="ltab" id="tab-sms" onclick="loginTab('sms')">验证码登录</span>
+      </div>
+      <div class="field"><label>联系方式</label><input class="in" placeholder="手机号 / 邮箱"></div>
+      <div class="field" id="f-pwd"><label>密码</label><input class="in" type="password" placeholder="请输入密码"></div>
+      <div class="field" id="f-sms" style="display:none">
+        <label>验证码</label>
+        <div style="display:flex;gap:8px">
+          <input class="in" placeholder="6 位验证码" style="flex:1">
+          <button class="btn btn-ghost" style="white-space:nowrap" onclick="CX.toast('验证码已发送（原型演示）')">获取验证码</button>
+        </div>
+      </div>
+      <div class="lrow">
+        <label class="check"><input type="checkbox" checked>记住我</label>
+        <a href="#" onclick="CX.toast('重置链接已发送（原型演示）');return false">忘记密码？</a>
+      </div>
+      <button class="btn btn-pri btn-lg" style="width:100%;justify-content:center" onclick="CX.toast('登录中…（原型演示）');setTimeout(function(){location.href='workbench.html'},900)">立即登录</button>
+      <div class="l-reg">还没有账号？<a href="candidate-submit.html">立即注册</a></div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/shell.js"></script>
+<script>
+function loginTab(m){
+  var pwd = m === 'pwd';
+  document.getElementById('tab-pwd').classList.toggle('on', pwd);
+  document.getElementById('tab-sms').classList.toggle('on', !pwd);
+  document.getElementById('f-pwd').style.display = pwd ? '' : 'none';
+  document.getElementById('f-sms').style.display = pwd ? 'none' : '';
+  CX.toast(pwd ? '已切换：账号密码登录' : '已切换：手机验证码登录');
+}
+</script>
+</body>
+</html>

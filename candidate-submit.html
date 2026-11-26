@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><title>成果材料提交 · 候选人端 · 承星 HRM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/design.css">
+<style>
+/* ===== 页面内补充：子步骤条 / 上传区 / 授权说明 ===== */
+.substeps{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.substep{display:flex;align-items:center;gap:8px}
+.substep .sn{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);background:var(--white);color:var(--gray-l);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.substep .st{font-size:13px;color:var(--gray-l);white-space:nowrap}
+.substep .sbar{width:44px;height:1.5px;background:var(--line)}
+.substep.done .sn{background:var(--ink);border-color:var(--ink);color:#fff}
+.substep.done .st{color:var(--deep)}
+.substep.cur .sn{background:var(--amber-bg);border-color:var(--amber);color:var(--amber-deep)}
+.substep.cur .st{color:var(--amber-deep);font-weight:700}
+.dyn{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px 2px;margin-bottom:16px}
+.dyn-tip{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gray-l);margin-bottom:14px}
+.upload{border:1.5px dashed var(--line);border-radius:var(--r-md);padding:26px 16px;text-align:center;color:var(--gray-l);cursor:pointer;background:var(--white);font-size:13px}
+.upload:hover{border-color:var(--ink);color:var(--ink)}
+.upload .plus{display:block;font-size:22px;line-height:1;margin-bottom:6px;color:var(--gray-l)}
+.upload:hover .plus{color:var(--ink)}
+.auth{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px}
+.auth ul{list-style:none;margin:10px 0 0 23px;font-size:12.5px;color:var(--gray)}
+.auth ul li{margin-bottom:4px}
+.file-chip{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:13px;color:var(--deep)}
+.file-chip .x{color:var(--gray-l);cursor:pointer}
+.btn[disabled]{cursor:not-allowed;opacity:.45}
+</style>
+</head>
+<body>
+
+<div class="cand-top">
+  <a href="index.html" class="logo" style="padding:0"><div class="logo-mark"></div><div><b>承星 HRM</b><span>CHENGXING · RESULT-FIRST HIRING</span></div></a>
+  <a href="#progress" style="margin-left:auto;font-size:13.5px;color:var(--gray)" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--gray)'">投递进度 →</a>
+  <a href="index.html" style="font-size:13.5px;color:var(--gray);margin-left:24px">‹ 返回产品介绍</a>
+</div>
+
+<div class="cand-wrap">
+
+  <!-- 候选人 / 投递上下文 -->
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+    <div class="ava ava-1">张</div>
+    <div><b style="font-size:16px;color:var(--deep)">张一可</b>
+      <span style="color:var(--gray-l);font-size:13px">　应聘：高级视觉设计师 · 承星科技有限公司</span></div>
+    <span class="tag tag-amber" style="margin-left:auto">2026-11-26 · 进行中</span>
+  </div>
+
+  <!-- 主流程四步 -->
+  <div class="steps">
+    <div class="step done"><span class="n">✓</span><span class="t">投递信息</span><span class="bar"></span></div>
+    <div class="step cur"><span class="n">2</span><span class="t">成果材料提交</span><span class="bar"></span></div>
+    <div class="step"><span class="n">3</span><span class="t">材料确认</span><span class="bar"></span></div>
+    <div class="step"><span class="n">4</span><span class="t">投递进度</span></div>
+  </div>
+
+  <!-- ===== 添加项目成果（三步子流程） ===== -->
+  <div class="cand-card">
+    <div class="card-h" style="margin-bottom:4px"><h3>添加项目成果</h3><span class="more">选择成果来源后，将按类型出现对应字段</span></div>
+    <div style="font-size:12.5px;color:var(--gray-l);margin-bottom:18px">项目成果是评审的核心依据，请按真实情况填写；带 <b style="color:var(--red)">*</b> 为必填。</div>
+
+    <div class="substeps">
+      <div class="substep cur"><span class="sn">1</span><span class="st">项目基本信息</span><span class="sbar"></span></div>
+      <div class="substep"><span class="sn">2</span><span class="st">参与情况</span><span class="sbar"></span></div>
+      <div class="substep"><span class="sn">3</span><span class="st">成果与证明</span></div>
+    </div>
+
+    <!-- 步骤 1 · 项目基本信息 -->
+    <div class="subpane" id="sub1">
+      <div class="field">
+        <label>项目名称 <b>*</b></label>
+        <input class="in" value="某品牌视觉升级">
+      </div>
+      <div class="field">
+        <label>项目来源 <b>*</b></label>
+        <div class="radio-cards" data-radiogroup data-dynamic="dynFields">
+          <div class="radio-card on" data-val="work" onclick="CX.pick(this)"><b>企业工作项目</b><span>在职期间参与的企业项目</span></div>
+          <div class="radio-card" data-val="intern" onclick="CX.pick(this)"><b>实习项目</b><span>实习期间参与的真实项目</span></div>
+          <div class="radio-card" data-val="selfmedia" onclick="CX.pick(this)"><b>自媒体运营</b><span>抖音 / 小红书 / B站 等平台内容</span></div>
+          <div class="radio-card" data-val="personal" onclick="CX.pick(this)"><b>个人创作</b><span>自主发起的设计或作品</span></div>
+          <div class="radio-card" data-val="course" onclick="CX.pick(this)"><b>课程作业</b><span>学校课程中的设计课题</span></div>
+          <div class="radio-card" data-val="contest" onclick="CX.pick(this)"><b>竞赛获奖</b><span>专业竞赛的参赛与获奖项目</span></div>
+        </div>
+      </div>
+
+      <!-- 动态字段：随项目来源切换 -->
+      <div id="dynFields">
+        <div class="dyn" id="dyn-work">
+          <div class="dyn-tip">✦ 企业工作项目 · 需补充背景、身份与可展示范围</div>
+          <div class="field"><label>企业 / 项目背景 <b>*</b></label><textarea>在品牌咨询公司任职期间，参与某消费品牌整体视觉升级，统一多业务线的视觉表达。</textarea></div>
+          <div class="field"><label>参与身份 <b>*</b></label>
+            <select><option selected>正式员工</option><option>实习</option><option>外包 / 兼职</option><option>其他</option></select>
+          </div>
+          <div class="field"><label>个人负责模块 <b>*</b></label><input class="in" value="品牌视觉规范手册编写、线上线下物料延展设计"></div>
+          <div class="field"><label>可公开展示范围 <b>*</b></label>
+            <select><option>全部可公开</option><option selected>仅脱敏后可展示</option><option>不可公开，仅供企业内评审</option></select>
+          </div>
+        </div>
+
+        <div class="dyn" id="dyn-intern" style="display:none">
+          <div class="dyn-tip">✦ 实习项目 · 需补充实习企业与周期</div>
+          <div class="field"><label>实习企业 <b>*</b></label><input class="in" placeholder="请输入实习所在企业"></div>
+          <div class="field"><label>实习周期 <b>*</b></label><input class="in" placeholder="如：2025-06 至 2025-09"></div>
+          <div class="field"><label>导师 / 团队</label><input class="in" placeholder="带教导师或所在团队"></div>
+          <div class="field"><label>负责内容 <b>*</b></label><textarea placeholder="说明你在实习项目中独立承担的部分"></textarea></div>
+        </div>
+
+        <div class="dyn" id="dyn-selfmedia" style="display:none">
+          <div class="dyn-tip">✦ 自媒体运营 · 需补充平台、周期与成果数据</div>
+          <div class="field"><label>运营平台 <b>*</b></label>
+            <select><option>抖音</option><option>小红书</option><option>B站</option><option>其他</option></select>
+          </div>
+          <div class="field"><label>运营周期 <b>*</b></label><input class="in" placeholder="如：2024-03 至今"></div>
+          <div class="field"><label>个人负责内容 <b>*</b></label><textarea placeholder="选题 / 拍摄 / 剪辑 / 视觉包装等分工"></textarea></div>
+          <div class="field"><label>成果数据 <b>*</b></label><input class="in" placeholder="粉丝数 / 播放量 / 互动量 / 转化"></div>
+          <div class="field"><label>数据统计时间与来源 <b>*</b></label><input class="in" placeholder="如：2026-10 平台后台截图"></div>
+        </div>
+
+        <div class="dyn" id="dyn-personal" style="display:none">
+          <div class="dyn-tip">✦ 个人创作 · 需说明动机、过程与完成度</div>
+          <div class="field"><label>创作动机 <b>*</b></label><textarea placeholder="为什么做这个作品，想解决什么问题"></textarea></div>
+          <div class="field"><label>研究与设计过程 <b>*</b></label><textarea placeholder="调研、草图、方案迭代等关键过程"></textarea></div>
+          <div class="field"><label>完成度说明</label><input class="in" placeholder="如：高保真可交互原型 / 概念稿"></div>
+        </div>
+
+        <div class="dyn" id="dyn-course" style="display:none">
+          <div class="dyn-tip">✦ 课程作业 · 需区分概念方案与落地实现</div>
+          <div class="field"><label>课程 / 学校 <b>*</b></label><input class="in" placeholder="课程名称与所在院校"></div>
+          <div class="field"><label>是否为概念方案 <b>*</b></label>
+            <select><option>是，概念方案</option><option>否，已落地实现</option></select>
+          </div>
+          <div class="field"><label>研究方法与产出 <b>*</b></label><textarea placeholder="使用的研究方法与最终产出物"></textarea></div>
+        </div>
+
+        <div class="dyn" id="dyn-contest" style="display:none">
+          <div class="dyn-tip">✦ 竞赛获奖 · 需补充奖项、机构与证明材料</div>
+          <div class="field"><label>竞赛名称 <b>*</b></label><input class="in" placeholder="如：全国大学生广告艺术大赛"></div>
+          <div class="field"><label>获奖名称与年份 <b>*</b></label><input class="in" placeholder="如：国家级二等奖 · 2025"></div>
+          <div class="field"><label>主办 / 评审机构 <b>*</b></label><input class="in" placeholder="主办方与评审机构名称"></div>
+          <div class="field"><label>团队角色</label><input class="in" placeholder="如：队长 / 视觉负责人"></div>
+          <div class="field"><label>获奖证明上传 <b>*</b></label>
+            <div class="upload" style="padding:16px" onclick="CX.toast('原型演示：支持上传证书图片 / PDF')"><b style="color:var(--ink)">＋ 上传获奖证明</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>项目简介 <b>*</b></label>
+        <textarea>某消费品牌视觉整体升级项目，覆盖品牌标识、视觉规范与应用延展，2025 年 9 月上线并应用于线上线下物料。</textarea>
+      </div>
+    </div>
+
+    <!-- 步骤 2 · 参与情况 -->
+    <div class="subpane" id="sub2" style="display:none">
+      <div class="field">
+        <label>参与方式 <b>*</b></label>
+        <div class="radio-cards" style="grid-template-columns:1fr 1fr" data-radiogroup data-dynamic="teamFields">
+          <div class="radio-card" data-val="solo" onclick="CX.pick(this)"><b>独立完成</b><span>项目由本人独立承担</span></div>
+          <div class="radio-card on" data-val="team" onclick="CX.pick(this)"><b>团队协作</b><span>与他人共同完成，需说明分工</span></div>
+        </div>
+      </div>
+      <div id="teamFields">
+        <div class="dyn" id="dyn-solo" style="display:none"></div>
+        <div class="dyn" id="dyn-team">
+          <div class="dyn-tip">✦ 团队协作 · 请如实填写个人贡献，便于评审核实</div>
+          <div class="field"><label>团队规模 <b>*</b></label>
+            <select><option>2 人</option><option>3 人</option><option selected>4 人</option><option>5 人及以上</option></select>
+          </div>
+        </div>
+      </div>
+      <div class="field"><label>担任角色 <b>*</b></label><input class="in" value="视觉设计师（规范与延展组）"></div>
+      <div class="field"><label>个人负责内容 <b>*</b></label><textarea>负责品牌视觉规范手册（作品集第 15–24 页）的编写，以及线上线下物料延展设计；主视觉方向由团队负责人主导。</textarea></div>
+    </div>
+
+    <!-- 步骤 3 · 成果与证明 -->
+    <div class="subpane" id="sub3" style="display:none">
+      <div class="field">
+        <label>项目状态 <b>*</b></label>
+        <div class="radio-cards" data-radiogroup>
+          <div class="radio-card on" data-val="live" onclick="CX.pick(this);CX.toast('项目状态：已上线 / 实际应用')"><b>已上线 / 实际应用</b><span>已在真实业务中使用</span></div>
+          <div class="radio-card" data-val="delivered" onclick="CX.pick(this);CX.toast('项目状态：已交付')"><b>已交付</b><span>已交付企业，暂未公开上线</span></div>
+          <div class="radio-card" data-val="running" onclick="CX.pick(this);CX.toast('项目状态：持续运营')"><b>持续运营</b><span>内容或项目仍在持续更新</span></div>
+          <div class="radio-card" data-val="concept" onclick="CX.pick(this);CX.toast('项目状态：概念方案')"><b>概念方案</b><span>练习或概念性产出</span></div>
+          <div class="radio-card" data-val="doing" onclick="CX.pick(this);CX.toast('项目状态：进行中')"><b>进行中</b><span>尚未完成，可后续补充</span></div>
+        </div>
+      </div>
+      <div class="field"><label>成果描述 <b>*</b></label><textarea>完成品牌视觉规范手册 1 套（42P）、线上线下物料延展 6 类；2025 年 9 月随品牌焕新上线，应用于门店与电商渠道。</textarea></div>
+      <div class="field">
+        <label>成果证明（可多选）</label>
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <label class="check"><input type="checkbox" checked onclick="CX.toast(this.checked?'已勾选：交付文件':'已取消：交付文件')">交付文件</label>
+          <label class="check"><input type="checkbox" onclick="CX.toast(this.checked?'已勾选：业务数据':'已取消：业务数据')">业务数据</label>
+          <label class="check"><input type="checkbox" checked onclick="CX.toast(this.checked?'已勾选：应用截图':'已取消：应用截图')">应用截图</label>
+          <label class="check"><input type="checkbox" onclick="CX.toast(this.checked?'已勾选：获奖证明':'已取消：获奖证明')">获奖证明</label>
+          <label class="check"><input type="checkbox" onclick="CX.toast(this.checked?'已勾选：用户反馈':'已取消：用户反馈')">用户反馈</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>材料上传</label>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+          <span class="file-chip">📄 品牌视觉升级作品集.pdf · 50 页 <span class="x" onclick="CX.toast('原型演示：材料移除需在提交前操作')">✕</span></span>
+          <span class="file-chip">🖼 应用实拍截图 ×6 <span class="x" onclick="CX.toast('原型演示：材料移除需在提交前操作')">✕</span></span>
+        </div>
+        <div class="upload" onclick="CX.toast('原型演示：支持 PDF / 图片 / 视频链接，单个 ≤ 100MB')">
+          <span class="plus">＋</span>点击或拖拽上传成果材料<br>
+          <span style="font-size:12px">支持 PDF、JPG/PNG、视频链接；AI 将自动解析并定位证据</span>
+        </div>
+      </div>
+      <div class="auth">
+        <label class="check"><input type="checkbox" checked>　我确认并同意以下<b>材料授权安排</b></label>
+        <ul>
+          <li><b>材料用途</b>：仅用于承星科技有限公司「高级视觉设计师」岗位本次招聘评估；</li>
+          <li><b>访问范围</b>：HR、业务负责人与指定专业面试官可见，不外发、不用于其他用途；</li>
+          <li><b>保留期限</b>：自投递之日起 12 个月，到期自动归档并删除；</li>
+          <li><b>可撤回</b>：可随时在「投递进度」中撤回授权，撤回后材料立即停止访问。</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 子流程按钮 -->
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:22px;padding-top:18px;border-top:1px solid var(--line-2)">
+      <button class="btn btn-ghost" id="btnPrev" disabled onclick="subGo(SUB-1)">上一步</button>
+      <button class="btn btn-pri" id="btnNext" onclick="subGo(SUB+1);CX.toast('进入步骤 '+SUB+'：'+['','项目基本信息','参与情况','成果与证明'][SUB])">下一步</button>
+      <button class="btn btn-pri" id="btnSubmit" style="display:none" onclick="CX.toast('项目已提交，AI 解析预计 3 分钟')">提交项目</button>
+    </div>
+  </div>
+
+  <!-- ===== 我的投递进度 ===== -->
+  <div class="cand-card" id="progress" style="margin-top:16px">
+    <div class="card-h"><h3>我的投递进度</h3><span class="more">承星科技有限公司 · 高级视觉设计师</span></div>
+    <div class="tl">
+      <div class="ev"><div class="h">投递成功</div><div class="m">2026-11-20 10:24 · 简历与作品集已接收</div></div>
+      <div class="ev"><div class="h">AI 解析完成</div><div class="m">2026-11-20 10:27 · 识别项目成果 3 个，已生成结构化档案</div></div>
+      <div class="ev"><div class="h">HR 查看材料</div><div class="m">2026-11-24 09:15 · 韩女士（HR 负责人）</div></div>
+      <div class="ev on"><div class="h">待补充请求</div><div class="m">2026-11-26 · 请补充项目落地证明与个人负责范围，<a href="#" onclick="CX.toast('原型演示：跳转补充材料页');return false" style="color:var(--amber-deep);font-weight:600">去补充 →</a></div></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="assets/shell.js"></script>
+<script>
+var SUB = 1;
+function subGo(n){
+  if(n < 1 || n > 3) return;
+  SUB = n;
+  for(var i = 1; i <= 3; i++){ document.getElementById('sub' + i).style.display = (i === n) ? '' : 'none'; }
+  var ss = document.querySelectorAll('.substep');
+  for(var j = 0; j < ss.length; j++){
+    ss[j].classList.remove('done', 'cur');
+    var cls = (j + 1 < n) ? 'done' : ((j + 1 === n) ? 'cur' : null);
+    if(cls) ss[j].classList.add(cls);
+  }
+  var prev = document.getElementById('btnPrev');
+  prev.disabled = (n === 1);
+  document.getElementById('btnNext').style.display = (n === 3) ? 'none' : '';
+  document.getElementById('btnSubmit').style.display = (n === 3) ? '' : 'none';
+}
+</script>
+</body>
+</html>

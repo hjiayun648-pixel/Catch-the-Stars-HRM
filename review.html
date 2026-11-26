@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><title>专业评审工作台 · 承星 HRM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/design.css">
+<style>
+/* ===== 页面内补充样式 ===== */
+.rbtn{padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:13px;color:var(--gray);cursor:pointer;margin-right:8px;font-family:var(--font)}
+.rbtn:hover{border-color:var(--ink);color:var(--deep)}
+.rbtn.on{border-color:var(--ink);background:var(--info-bg);color:var(--ink);font-weight:600}
+.rate-g{display:flex;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.cap-card .proj{display:flex;align-items:center;gap:8px;background:var(--line-2);border-radius:8px;padding:9px 12px;font-size:13px;color:var(--gray);margin-bottom:12px;flex-wrap:wrap}
+.cites{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.cites .lbl{font-size:12px;color:var(--gray-l)}
+.cap-foot{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:2px}
+.qrow{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:var(--r-md);padding:11px 13px;background:var(--white);margin-bottom:10px}
+.qrow .q{flex:1;font-size:13.5px;color:var(--deep)}
+.qrow .q small{display:block;font-size:11.5px;color:var(--gray-l);margin-top:2px}
+#outline{padding-left:22px;list-style:disc;font-size:13.5px;color:var(--deep)}
+#outline li{margin-bottom:8px}
+#outline li::marker{color:var(--amber-deep)}
+.steps .step{cursor:pointer}
+.cite-list{display:flex;flex-direction:column;gap:10px}
+.cite-item{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px}
+.cite-item:hover{border-color:var(--ink)}
+.cite-item .t{font-size:13.5px;color:var(--deep);font-weight:600}
+.cite-item .d{font-size:12px;color:var(--gray-l);margin-top:2px}
+.note-bar{display:flex;gap:8px;align-items:center;background:var(--white);border:1px dashed var(--line);border-radius:var(--r-md);padding:12px 16px;font-size:12.5px;color:var(--gray-l)}
+@media (max-width:640px){.rate-g .rbtn{margin-bottom:6px}}
+</style>
+</head>
+<body data-page="review">
+<div class="app"><div class="main"><div class="wrap">
+
+<div class="crumb" data-crumb></div>
+
+<div class="page-h">
+  <h1>专业评审工作台</h1>
+  <span class="tag tag-amber"><span class="dot" style="background:var(--amber)"></span>专业评审中</span>
+  <div class="sub">候选人 张一可 · 高级视觉设计师 · 评审人 陈建宏（专业面试官）</div>
+  <div class="right">
+    <button class="btn btn-ghost btn-sm" onclick="CX.toast('草稿已保存 · 2026-11-26 20:17')">保存草稿</button>
+    <button class="btn btn-pri btn-sm" onclick="CX.toast('评审意见已提交，将进入决策汇总')">提交评审</button>
+  </div>
+</div>
+
+<div class="steps">
+  <div class="step done" onclick="CX.toast('HR 初筛已完成 · 评审人 韩女士 · 结论 通过')"><span class="n">✓</span><span class="t">HR 初筛</span><span class="bar"></span></div>
+  <div class="step done" onclick="CX.toast('业务评审已完成 · 评审人 李一明 · 结论 建议进入下一轮')"><span class="n">✓</span><span class="t">业务评审</span><span class="bar"></span></div>
+  <div class="step cur" onclick="CX.toast('当前正在填写：专业评审')"><span class="n">3</span><span class="t">专业评审</span><span class="bar"></span></div>
+  <div class="step" onclick="CX.toast('面试反馈需在面试完成后填写')"><span class="n">4</span><span class="t">面试反馈</span></div>
+</div>
+
+<div class="card">
+  <div class="card-h"><h3>候选人成果概览</h3><span class="more">评审依据原始材料，AI 摘要仅作参考线索</span></div>
+  <div class="grid g3" style="gap:12px">
+    <div class="stat" style="box-shadow:none"><div class="k">相关项目</div><div class="v">5<small>个</small></div><div class="d">企业工作项目 3 · 个人实践 2</div></div>
+    <div class="stat" style="box-shadow:none"><div class="k">待核实信息</div><div class="v" style="color:var(--amber-deep)">2<small>项</small></div><div class="d">个人贡献范围 · 落地证明</div></div>
+    <div class="stat" style="box-shadow:none"><div class="k">本次评审能力项</div><div class="v">3<small>项</small></div><div class="d">核心 2 · 重要 1</div></div>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap">
+    <a class="btn btn-ghost btn-sm" href="evidence.html">查看原始作品</a>
+    <span style="font-size:12px;color:var(--gray-l)">当前项目：某品牌视觉升级 · 企业工作项目 · 团队协作 4 人 · 已实际应用</span>
+  </div>
+</div>
+
+<div class="grid g-21">
+  <div>
+    <div class="card cap-card">
+      <div class="card-h"><h3>品牌视觉设计</h3><span class="tag tag-info">核心能力</span><span class="more">权重最高</span></div>
+      <div class="proj">对应项目：某品牌视觉升级 · 证据 <a class="ev-link" href="evidence.html">第 12 页 品牌主视觉</a><span style="margin-left:auto;font-size:12px;color:var(--gray-l)">业务评审：已确认</span></div>
+      <div class="rate-g">
+        <button class="rbtn on" onclick="CX.rate(this,'品牌视觉设计')">符合</button>
+        <button class="rbtn" onclick="CX.rate(this,'品牌视觉设计')">部分符合</button>
+        <button class="rbtn" onclick="CX.rate(this,'品牌视觉设计')">暂无法判断</button>
+      </div>
+      <div class="field" style="margin-bottom:12px"><label>评价说明</label><textarea>主视觉方向完整，色彩与图形语言统一，能看出对品牌调性的把握；但提案阶段的独立判断过程材料中体现较少。</textarea></div>
+      <div class="cap-foot">
+        <button class="btn btn-amber btn-sm" onclick="CX.openModal('citeModal')">引用证据</button>
+        <div class="cites"><span class="lbl">已引用：</span><span class="tag tag-amber">PDF 第 12 页 · 品牌主视觉</span></div>
+      </div>
+    </div>
+
+    <div class="card cap-card">
+      <div class="card-h"><h3>视觉规范构建</h3><span class="tag tag-info">核心能力</span><span class="more">岗位关键项</span></div>
+      <div class="proj">对应项目：某品牌视觉升级 · 证据 <a class="ev-link" href="evidence.html">第 18 页 视觉规范手册</a><span style="margin-left:auto;font-size:12px;color:var(--gray-l)">业务评审：已确认</span></div>
+      <div class="rate-g">
+        <button class="rbtn" onclick="CX.rate(this,'视觉规范构建')">符合</button>
+        <button class="rbtn on" onclick="CX.rate(this,'视觉规范构建')">部分符合</button>
+        <button class="rbtn" onclick="CX.rate(this,'视觉规范构建')">暂无法判断</button>
+      </div>
+      <div class="field" style="margin-bottom:12px"><label>评价说明</label><textarea>手册结构清晰，版式与字体规范部分较为扎实；但 4 人团队协作，个人在规范体系设计中的实际贡献范围仍需面试确认。</textarea></div>
+      <div class="cap-foot">
+        <button class="btn btn-amber btn-sm" onclick="CX.openModal('citeModal')">引用证据</button>
+        <div class="cites"><span class="lbl">已引用：</span><span class="tag tag-amber">PDF 第 18 页 · 视觉规范</span><span class="tag tag-amber">PDF 第 20 页 · 版式与字体</span></div>
+      </div>
+    </div>
+
+    <div class="card cap-card">
+      <div class="card-h"><h3>项目执行落地</h3><span class="tag">重要能力</span><span class="more">待补充证明</span></div>
+      <div class="proj">对应项目：某品牌视觉升级 · 证据 <a class="ev-link" href="evidence.html">第 22 页 应用延展</a><span style="margin-left:auto;font-size:12px;color:var(--gray-l)">业务评审：待核实</span></div>
+      <div class="rate-g">
+        <button class="rbtn" onclick="CX.rate(this,'项目执行落地')">符合</button>
+        <button class="rbtn" onclick="CX.rate(this,'项目执行落地')">部分符合</button>
+        <button class="rbtn" onclick="CX.rate(this,'项目执行落地')">暂无法判断</button>
+      </div>
+      <div class="field" style="margin-bottom:12px"><label>评价说明</label><textarea placeholder="请说明判断依据，建议引用原始材料中的具体位置…"></textarea></div>
+      <div class="cap-foot">
+        <button class="btn btn-amber btn-sm" onclick="CX.openModal('citeModal')">引用证据</button>
+        <div class="cites"><span class="lbl">尚未引用证据</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>评审总结</h3><span class="more">优势 / 不足 / 待追问</span></div>
+      <div class="grid g3" style="gap:12px">
+        <div class="field" style="margin-bottom:0"><label>优势</label><textarea>品牌视觉语言完整，规范手册编写能力扎实，作品呈现表达清晰。</textarea></div>
+        <div class="field" style="margin-bottom:0"><label>不足</label><textarea>缺少量化成果数据，动态视觉方向未见案例支撑。</textarea></div>
+        <div class="field" style="margin-bottom:0"><label>待追问</label><textarea>个人在 4 人团队中的具体分工；规范手册是否实际投入使用。</textarea></div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:14px">
+        <button class="btn btn-ghost" onclick="CX.toast('草稿已保存 · 2026-11-26 20:17')">保存草稿</button>
+        <button class="btn btn-pri" onclick="CX.toast('评审意见已提交，将进入决策汇总')">提交评审</button>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="card">
+      <div class="card-h"><h3>AI 面试追问建议</h3><span class="note-ai">AI 生成 · 可编辑</span></div>
+      <div class="qrow">
+        <div class="q">你在品牌升级项目中具体负责哪些部分？<small>针对：视觉规范构建 · 个人贡献范围待核实</small></div>
+        <button class="btn btn-ghost btn-sm" onclick="CX.addQ(this,'你在品牌升级项目中具体负责哪些部分？')">加入面试提纲</button>
+      </div>
+      <div class="qrow">
+        <div class="q">最终视觉规范是否实际投入使用？<small>针对：项目执行落地 · 落地证明待补充</small></div>
+        <button class="btn btn-ghost btn-sm" onclick="CX.addQ(this,'最终视觉规范是否实际投入使用？')">加入面试提纲</button>
+      </div>
+      <div class="qrow">
+        <div class="q">项目中是否存在其他设计人员？<small>针对：团队协作 · 4 人分工边界</small></div>
+        <button class="btn btn-ghost btn-sm" onclick="CX.addQ(this,'项目中是否存在其他设计人员？')">加入面试提纲</button>
+      </div>
+      <div style="font-size:12px;color:var(--gray-l);margin-bottom:12px">建议围绕证据缺口生成，不针对 AI 摘要本身提问。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>我的面试提纲</h3><span class="more">可编辑 · 可删除</span></div>
+      <ul id="outline">
+        <li>请介绍一次你独立推动、最终上线的视觉项目，说明你的角色与产出。</li>
+      </ul>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button class="btn btn-ghost btn-sm" onclick="CX.toast('请输入提纲内容后保存（原型演示）')">新增问题</button>
+        <button class="btn btn-ghost btn-sm" onclick="CX.toast('提纲已同步给 HR 韩女士')">同步给 HR</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>评审进度</h3></div>
+      <div class="tl">
+        <div class="ev on"><div class="h">能力评审 2 / 3 项已填写</div><div class="m">项目执行落地 待评价</div></div>
+        <div class="ev"><div class="h">已引用证据 3 处</div><div class="m">PDF 第 12 / 18 / 20 页</div></div>
+        <div class="ev"><div class="h">评审任务分配</div><div class="m">韩女士 · 2026-11-26 09:30</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="note-bar">
+  <span class="tag tag-amber">本页要点</span>
+  <span>评审表按岗位能力维度组织，每项能力独立给出三档结论与证据引用；提交后意见进入 decision.html 决策汇总，保留各角色独立意见。</span>
+</div>
+
+<div class="modal" id="citeModal">
+  <div class="hd"><h3>选择评审证据 · 品牌视觉升级</h3><span class="x" onclick="CX.closeModal('citeModal')">✕</span></div>
+  <div class="bd">
+    <div style="font-size:12.5px;color:var(--gray-l);margin-bottom:12px">证据引用将附在本条评审意见下方，可在原始材料预览中定位查看。</div>
+    <div class="cite-list">
+      <label class="check cite-item"><input type="checkbox" checked><div><div class="t">PDF 第 12 页 · 品牌主视觉</div><div class="d">作品集 50 页 · 主视觉与标识系统</div></div></label>
+      <label class="check cite-item"><input type="checkbox" checked><div><div class="t">PDF 第 18 页 · 视觉规范</div><div class="d">视觉规范手册起始页</div></div></label>
+      <label class="check cite-item"><input type="checkbox"><div><div class="t">PDF 第 22 页 · 应用延展</div><div class="d">线上线下物料延展</div></div></label>
+      <label class="check cite-item"><input type="checkbox"><div><div class="t">图片 · 图 3 线下应用场景</div><div class="d">应用实拍截图 6 张之一</div></div></label>
+    </div>
+  </div>
+  <div class="ft">
+    <button class="btn btn-ghost" onclick="CX.closeModal('citeModal')">取消</button>
+    <button class="btn btn-pri" onclick="CX.closeModal('citeModal');CX.toast('已引用：PDF 第 12 页、第 18 页')">确认引用</button>
+  </div>
+</div>
+
+</div></div></div>
+<script src="assets/shell.js"></script>
+</body>
+</html>

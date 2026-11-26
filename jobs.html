@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><title>岗位与需求 · 承星 HRM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/design.css">
+<style>
+.f-select{cursor:pointer}
+.f-select:hover{border-color:var(--ink);color:var(--deep)}
+.list-foot{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--gray);margin-top:14px}
+.pager{display:flex;gap:6px;margin-left:auto}
+.pager .p{min-width:28px;height:28px;border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:var(--gray);cursor:pointer;background:var(--white)}
+.pager .p:hover{border-color:var(--ink);color:var(--ink)}
+.pager .p.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.job-name{font-weight:600;color:var(--deep)}
+.job-sub{font-size:12px;color:var(--gray-l);margin-top:2px}
+</style>
+</head>
+<body data-page="jobs">
+<div class="app"><div class="main"><div class="wrap">
+
+<div class="crumb" data-crumb></div>
+<div class="page-h">
+  <h1>岗位与需求</h1>
+  <span class="sub">4 个招聘中岗位 · 75 名候选人进行中</span>
+  <div class="right">
+    <a class="btn btn-pri" href="standard.html">＋ 创建招聘需求</a>
+  </div>
+</div>
+
+<div class="filters">
+  <div class="f-input" style="min-width:260px"><span style="color:var(--gray-l)">🔍</span>搜索岗位名称 / 负责人</div>
+  <div class="f-select" onclick="CX.toast('筛选：全部部门（原型演示）')">全部部门 ▾</div>
+  <div class="f-select" onclick="CX.toast('筛选：岗位状态（原型演示）')">岗位状态：招聘中 ▾</div>
+  <div class="f-select" onclick="CX.toast('筛选：招聘负责人（原型演示）')">负责人：全部 ▾</div>
+</div>
+
+<div class="card" style="padding:0;overflow:hidden">
+  <table class="tb">
+    <tr><th>岗位名称</th><th>部门</th><th class="num">招聘人数</th><th class="num">候选人数</th><th>当前阶段</th><th>负责人</th><th>状态</th><th style="width:120px">操作</th></tr>
+    <tr>
+      <td><div class="job-name"><a href="jobdetail.html">高级视觉设计师</a></div><div class="job-sub">品牌设计中心 · 2026-10-12 发布</div></td>
+      <td>设计部</td><td class="num">1</td><td class="num">12</td>
+      <td><span class="tag tag-info">业务评审中</span></td>
+      <td>韩女士</td>
+      <td><span class="tag tag-green"><span class="dot" style="background:var(--green)"></span>招聘中</span></td>
+      <td class="ops"><a href="jobdetail.html">详情</a><a href="review.html">评审</a></td>
+    </tr>
+    <tr>
+      <td><div class="job-name"><a href="jobdetail.html">产品经理</a></div><div class="job-sub">产品部 · 2026-10-28 发布</div></td>
+      <td>产品部</td><td class="num">2</td><td class="num">18</td>
+      <td><span class="tag tag-gray">待初筛</span></td>
+      <td>韩女士</td>
+      <td><span class="tag tag-green"><span class="dot" style="background:var(--green)"></span>招聘中</span></td>
+      <td class="ops"><a href="jobdetail.html">详情</a><a href="review.html">评审</a></td>
+    </tr>
+    <tr>
+      <td><div class="job-name"><a href="jobdetail.html">内容运营</a></div><div class="job-sub">市场部 · 2026-11-03 发布</div></td>
+      <td>市场部</td><td class="num">2</td><td class="num">25</td>
+      <td><span class="tag tag-amber">专业面试</span></td>
+      <td>韩女士</td>
+      <td><span class="tag tag-green"><span class="dot" style="background:var(--green)"></span>招聘中</span></td>
+      <td class="ops"><a href="jobdetail.html">详情</a><a href="review.html">评审</a></td>
+    </tr>
+    <tr>
+      <td><div class="job-name"><a href="jobdetail.html">前端工程师</a></div><div class="job-sub">技术部 · 2026-11-10 发布</div></td>
+      <td>技术部</td><td class="num">3</td><td class="num">20</td>
+      <td><span class="tag tag-info">业务评审中</span></td>
+      <td>韩女士</td>
+      <td><span class="tag tag-green"><span class="dot" style="background:var(--green)"></span>招聘中</span></td>
+      <td class="ops"><a href="jobdetail.html">详情</a><a href="review.html">评审</a></td>
+    </tr>
+  </table>
+</div>
+
+<div class="list-foot">
+  共 4 条
+  <div class="pager">
+    <span class="p on">1</span>
+    <span class="p" onclick="CX.toast('原型演示：仅提供第 1 页数据')">2</span>
+    <span class="p" onclick="CX.toast('原型演示：仅提供第 1 页数据')">3</span>
+  </div>
+</div>
+
+</div></div></div>
+<script src="assets/shell.js"></script>
+</body>
+</html>

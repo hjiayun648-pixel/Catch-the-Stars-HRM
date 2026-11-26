@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><title>候选人管理 · 承星 HRM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/design.css">
+<style>
+.f-select{cursor:pointer}
+.f-select:hover{border-color:var(--ink);color:var(--deep)}
+.notice{font-size:12.5px;color:var(--info);background:var(--info-bg);border:1px solid #DDD5C4;border-radius:8px;padding:9px 14px;margin-bottom:14px}
+.cand{display:flex;align-items:center;gap:10px}
+.cand .nm{font-weight:600;color:var(--deep)}
+.cand .sub{font-size:12px;color:var(--gray-l);margin-top:1px}
+.mats{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.mats .n{font-weight:600;color:var(--deep);font-variant-numeric:tabular-nums}
+.mats .tag{font-size:11px;padding:1px 8px}
+.list-foot{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--gray);margin-top:14px}
+.pager{display:flex;gap:6px;margin-left:auto}
+.pager .p{min-width:28px;height:28px;border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:var(--gray);cursor:pointer;background:var(--white)}
+.pager .p:hover{border-color:var(--ink);color:var(--ink)}
+.pager .p.on{background:var(--ink);border-color:var(--ink);color:#fff}
+</style>
+</head>
+<body data-page="candidates">
+<div class="app"><div class="main"><div class="wrap">
+
+<div class="crumb" data-crumb></div>
+<div class="page-h">
+  <h1>候选人管理</h1>
+  <span class="sub">全部岗位 · 75 名候选人 · 综合管理简历与成果材料</span>
+  <div class="right">
+    <button class="btn btn-ghost" onclick="CX.toast('导出任务已创建，完成后在消息中心通知')">导出列表</button>
+    <button class="btn btn-pri" onclick="CX.openModal('importModal')">导入候选人</button>
+  </div>
+</div>
+
+<div class="filters">
+  <div class="f-input" style="min-width:240px"><span style="color:var(--gray-l)">🔍</span>搜索候选人姓名 / 应聘岗位</div>
+  <div class="f-select" onclick="CX.toast('筛选：应聘岗位（原型演示）')">岗位：高级视觉设计师 ▾</div>
+  <div class="f-select" onclick="CX.toast('筛选：招聘阶段（原型演示）')">招聘阶段：全部 ▾</div>
+  <div data-chipgroup data-filter="src" style="display:flex;gap:8px;flex-wrap:wrap;margin-left:4px">
+    <span class="chip on" data-val="all" onclick="CX.chips(this)">全部</span>
+    <span class="chip" data-val="complete" onclick="CX.chips(this)">材料完整</span>
+    <span class="chip" data-val="parse" onclick="CX.chips(this)">待解析</span>
+    <span class="chip" data-val="supply" onclick="CX.chips(this)">待补充</span>
+    <span class="chip" data-val="verify" onclick="CX.chips(this)">待核实</span>
+  </div>
+</div>
+
+<div class="notice">列表不展示 AI 综合评分——不同岗位能力标准不同，成果材料不折算为统一分数。</div>
+
+<div class="card" style="padding:0;overflow:hidden">
+  <table class="tb">
+    <tr><th>候选人</th><th>应聘岗位</th><th>来源渠道</th><th>成果材料</th><th>当前阶段</th><th>材料状态</th><th>负责人</th><th style="width:110px">操作</th></tr>
+    <tr data-row-src="complete">
+      <td><div class="cand"><span class="ava ava-1">张</span><div><div class="nm"><a href="canddetail.html">张一可</a></div><div class="sub">投递于 2026-11-21</div></div></div></td>
+      <td>高级视觉设计师</td>
+      <td><span class="tag tag-info">内推</span></td>
+      <td><div class="mats"><span class="n">5 个项目</span><span class="tag">企业工作项目</span><span class="tag">个人商业实践</span></div></td>
+      <td><span class="tag tag-info">业务评审中</span></td>
+      <td><span class="tag tag-green">材料完整</span></td>
+      <td>韩女士</td>
+      <td class="ops"><a href="canddetail.html">详情</a><a href="aireport.html">解析</a></td>
+    </tr>
+    <tr data-row-src="parse">
+      <td><div class="cand"><span class="ava ava-2">王</span><div><div class="nm"><a href="canddetail.html">王雨桐</a></div><div class="sub">投递于 2026-11-24</div></div></div></td>
+      <td>高级视觉设计师</td>
+      <td><span class="tag">BOSS直聘</span></td>
+      <td><div class="mats"><span class="n">3 个项目</span><span class="tag">课程与概念作品</span><span class="tag">个人自主创作</span></div></td>
+      <td><span class="tag tag-gray">待初筛</span></td>
+      <td><span class="tag tag-gray">待解析</span></td>
+      <td>韩女士</td>
+      <td class="ops"><a href="canddetail.html">详情</a><a href="aireport.html">解析</a></td>
+    </tr>
+    <tr data-row-src="complete">
+      <td><div class="cand"><span class="ava ava-3">陈</span><div><div class="nm"><a href="canddetail.html">陈思远</a></div><div class="sub">投递于 2026-11-19</div></div></div></td>
+      <td>高级视觉设计师</td>
+      <td><span class="tag">实习僧</span></td>
+      <td><div class="mats"><span class="n">2 个项目</span><span class="tag">竞赛与获奖作品</span></div></td>
+      <td><span class="tag tag-gray">待初筛</span></td>
+      <td><span class="tag tag-green">材料完整</span></td>
+      <td>韩女士</td>
+      <td class="ops"><a href="canddetail.html">详情</a><a href="aireport.html">解析</a></td>
+    </tr>
+    <tr data-row-src="verify">
+      <td><div class="cand"><span class="ava ava-4">刘</span><div><div class="nm"><a href="canddetail.html">刘可欣</a></div><div class="sub">投递于 2026-11-26</div></div></div></td>
+      <td>高级视觉设计师</td>
+      <td><span class="tag">智联招聘</span></td>
+      <td><div class="mats"><span class="n">4 个项目</span><span class="tag">个人自主创作</span><span class="tag">企业实习项目</span></div></td>
+      <td><span class="tag tag-amber">专业面试</span></td>
+      <td><span class="tag tag-amber">待核实</span></td>
+      <td>韩女士</td>
+      <td class="ops"><a href="canddetail.html">详情</a><a href="aireport.html">解析</a></td>
+    </tr>
+    <tr data-row-src="supply">
+      <td><div class="cand"><span class="ava ava-5">赵</span><div><div class="nm"><a href="canddetail.html">赵一凡</a></div><div class="sub">投递于 2026-11-25</div></div></div></td>
+      <td>高级视觉设计师</td>
+      <td><span class="tag">企业官网</span></td>
+      <td><div class="mats"><span class="n">1 个项目</span><span class="tag">课程与概念作品</span></div></td>
+      <td><span class="tag tag-gray">待初筛</span></td>
+      <td><span class="tag tag-amber">待补充</span></td>
+      <td>韩女士</td>
+      <td class="ops"><a href="canddetail.html">详情</a><a href="aireport.html">解析</a></td>
+    </tr>
+  </table>
+</div>
+
+<div class="list-foot">
+  共 5 条
+  <div class="pager">
+    <span class="p on">1</span>
+    <span class="p" onclick="CX.toast('原型演示：仅提供第 1 页数据')">2</span>
+    <span class="p" onclick="CX.toast('原型演示：仅提供第 1 页数据')">3</span>
+  </div>
+</div>
+
+</div></div></div>
+<!-- 数据导入弹窗 -->
+<div class="modal" id="importModal" style="width:760px">
+  <div class="hd"><h3>导入候选人</h3><span class="x" onclick="CX.closeModal('importModal')">✕</span></div>
+  <div class="bd">
+    <div style="font-size:13px;font-weight:700;color:var(--deep);margin-bottom:10px">① 选择来源渠道</div>
+    <div class="radio-cards" data-radiogroup style="grid-template-columns:repeat(3,1fr)">
+      <div class="radio-card on" data-val="boss" onclick="CX.pick(this)"><b>BOSS直聘</b><span>授权同步 · 简历与附件</span></div>
+      <div class="radio-card" data-val="zlz" onclick="CX.pick(this)"><b>智联招聘</b><span>授权同步 · 简历与附件</span></div>
+      <div class="radio-card" data-val="sx" onclick="CX.pick(this)"><b>实习僧</b><span>授权同步 · 校招场景</span></div>
+      <div class="radio-card" data-val="web" onclick="CX.pick(this)"><b>企业官网招聘页</b><span>候选人直接投递</span></div>
+      <div class="radio-card" data-val="ref" onclick="CX.pick(this)"><b>内推</b><span>员工推荐 · 自动记录推荐人</span></div>
+      <div class="radio-card" data-val="xls" onclick="CX.pick(this)"><b>Excel / 附件批量</b><span>历史数据与其他渠道文件</span></div>
+    </div>
+    <div style="font-size:13px;font-weight:700;color:var(--deep);margin:16px 0 8px">② 字段映射（自动识别，可调整）</div>
+    <table class="tb" style="font-size:12.5px">
+      <tr><th>渠道字段</th><th>→ 承星字段</th><th>处理方式</th></tr>
+      <tr><td>姓名 / 电话 / 邮箱</td><td>候选人基本信息</td><td>直接映射</td></tr>
+      <tr><td>简历附件（PDF/Word）</td><td>简历经历</td><td>自动解析</td></tr>
+      <tr><td>作品集 / 项目附件 / 链接</td><td>成果材料 → 作品与成果评估</td><td>自动进入 AI 解析队列</td></tr>
+      <tr><td>投递岗位 / 推荐岗位</td><td>应聘岗位</td><td>按岗位名称匹配，未匹配需人工指定</td></tr>
+    </table>
+    <div style="font-size:13px;font-weight:700;color:var(--deep);margin:16px 0 8px">③ 去重与合并规则</div>
+    <div style="font-size:12.5px;color:var(--gray);line-height:1.8;background:var(--line-2);border-radius:8px;padding:10px 14px">
+      同一手机号或邮箱自动合并为一份候选人档案，保留各渠道来源记录；成果附件按项目归入「作品与成果评估」，不重复解析；合并冲突（如姓名不一致）进入人工确认列表。
+    </div>
+    <div style="font-size:13px;font-weight:700;color:var(--deep);margin:16px 0 8px">最近导入</div>
+    <table class="tb" style="font-size:12.5px">
+      <tr><th>时间</th><th>渠道</th><th>数量</th><th>合并</th><th>状态</th></tr>
+      <tr><td>11-26 09:12</td><td>BOSS直聘</td><td>18</td><td>2</td><td><span class="tag tag-green">完成</span></td></tr>
+      <tr><td>11-25 17:40</td><td>内推</td><td>5</td><td>1</td><td><span class="tag tag-green">完成</span></td></tr>
+      <tr><td>11-25 10:02</td><td>Excel 批量</td><td>46</td><td>7</td><td><span class="tag tag-amber">3 条待人工确认</span></td></tr>
+    </table>
+  </div>
+  <div class="ft">
+    <button class="btn btn-ghost" onclick="CX.closeModal('importModal')">取消</button>
+    <button class="btn btn-pri" onclick="CX.closeModal('importModal');CX.toast('已导入 18 人：2 人自动合并，成果附件已进入解析队列')">开始导入</button>
+  </div>
+</div>
+
+<script src="assets/shell.js"></script>
+</body>
+</html>

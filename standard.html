@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><title>岗位能力标准共创 · 承星 HRM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/design.css">
+<style>
+/* 页面级补充样式（仅本页） */
+.sug{border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;margin-bottom:10px;background:var(--white)}
+.sug .sh{display:flex;align-items:center;gap:8px}
+.sug .sh b{font-size:13.5px;color:var(--deep)}
+.sug p{font-size:12.5px;color:var(--gray);margin:6px 0 10px;line-height:1.6}
+.sug .sf{display:flex;gap:8px}
+.ro{background:var(--line-2);color:var(--gray);cursor:default}
+.drag{color:var(--gray-l);cursor:grab;letter-spacing:-2px;font-size:13px;margin-left:2px}
+.drag:hover{color:var(--ink)}
+.req-h{font-size:13px;color:var(--deep);font-weight:700;margin-bottom:8px}
+.req-list{display:flex;flex-direction:column;gap:8px}
+.tb .ops a{cursor:pointer}
+.tb .ops a:hover{text-decoration:underline}
+.hint{font-size:12px;color:var(--gray-l);line-height:1.7}
+.hint b{color:var(--gray);font-weight:600}
+</style>
+</head>
+<body data-page="standard">
+<div class="app"><div class="main"><div class="wrap">
+
+<div class="crumb" data-crumb></div>
+<div class="page-h">
+  <h1>岗位能力标准共创</h1>
+  <div class="sub">高级视觉设计师 · 品牌设计中心</div>
+  <div class="right">
+    <button class="btn btn-ghost btn-sm" onclick="CX.toast('草稿已保存 · 2026-11-26 20:12')">保存草稿</button>
+    <button class="btn btn-ghost btn-sm" onclick="CX.toast('确认请求已发送至 李一明（设计中心总监）')">发起业务确认</button>
+    <button class="btn btn-pri btn-sm" onclick="CX.toast('业务确认通过后才能发布，当前仍有 1 项待确认')">发布岗位</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="steps">
+    <div class="step done"><span class="n">✓</span><span class="t">基础信息</span><span class="bar"></span></div>
+    <div class="step done"><span class="n">✓</span><span class="t">部门业务说明</span><span class="bar"></span></div>
+    <div class="step cur"><span class="n">3</span><span class="t">岗位能力标准</span><span class="bar"></span></div>
+    <div class="step"><span class="n">4</span><span class="t">成果材料要求</span><span class="bar"></span></div>
+    <div class="step"><span class="n">5</span><span class="t">确认与发布</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-h"><h3>01 基础岗位信息</h3><span class="more">来自需求提报，如需修改请返回上一步</span></div>
+  <div class="grid g2" style="gap:14px 24px">
+    <div class="field" style="margin-bottom:0"><label>岗位名称</label><div class="in ro">高级视觉设计师</div></div>
+    <div class="field" style="margin-bottom:0"><label>所属部门</label><div class="in ro">品牌设计中心 · 视觉设计组</div></div>
+    <div class="field" style="margin-bottom:0"><label>招聘人数</label><div class="in ro">1 人</div></div>
+    <div class="field" style="margin-bottom:0"><label>工作地点</label><div class="in ro">杭州 · 滨江（可接受 2 天/周远程）</div></div>
+    <div class="field" style="margin-bottom:0"><label>招聘负责人</label><div class="in ro">韩女士 · HR 负责人</div></div>
+    <div class="field" style="margin-bottom:0"><label>业务负责人</label><div class="in ro">李一明 · 设计中心总监</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-h"><h3>02 部门业务说明</h3><span class="more">写得越具体，AI 归纳的能力要求越贴近实际工作</span></div>
+  <div class="grid g-21" style="gap:20px">
+    <div class="field" style="margin-bottom:0">
+      <label>业务说明 <b>*</b></label>
+      <textarea style="min-height:132px">我们目前主要负责公司品牌视觉升级、产品推广物料与营销活动视觉设计，需要设计师独立完成品牌视觉延展、宣传物料设计以及线下活动视觉落地。</textarea>
+    </div>
+    <div class="hint">
+      <b>可以这样写：</b><br>
+      · 团队现在在做什么类型的工作（品牌 / 物料 / 活动 / 线上）<br>
+      · 新人进来后主要承担哪几件事<br>
+      · 需要和哪些部门配合、交付节奏如何<br>
+      <b>不建议写：</b>只罗列软件技能或泛泛的"审美能力强"。
+    </div>
+  </div>
+  <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+    <button class="btn btn-amber" onclick="CX.openDrawer('aiDrawer')">AI 归纳能力要求</button>
+    <span style="font-size:12px;color:var(--gray-l)">AI 建议需 HR 与业务负责人共同确认，不自动生效</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-h"><h3>03 岗位能力标准</h3><span class="more">共 5 项 · 核心 2 项</span></div>
+  <div style="font-size:12.5px;color:var(--gray);background:var(--line-2);border-radius:8px;padding:9px 12px;margin-bottom:12px">
+    AI 建议需 HR 与业务负责人共同确认，不自动生效。可增删改，拖拽 <span class="drag">⋮⋮</span> 调整评审优先级。
+  </div>
+  <table class="tb">
+    <tr><th style="width:150px">能力名称</th><th>具体要求</th><th style="width:96px">重要程度</th><th style="width:150px">评估方式</th><th style="width:130px">操作</th></tr>
+    <tr>
+      <td>品牌视觉设计</td>
+      <td>能独立完成品牌主视觉与延展设计，视觉表达与品牌调性一致</td>
+      <td><span class="tag tag-amber">核心</span></td>
+      <td>作品集证据 + 项目复盘提问</td>
+      <td class="ops"><a onclick="CX.toast('已打开「品牌视觉设计」编辑')">编辑</a><a onclick="CX.toast('删除核心能力需业务负责人确认')">删除</a><span class="drag" title="拖拽排序">⋮⋮</span></td>
+    </tr>
+    <tr>
+      <td>视觉规范构建</td>
+      <td>能沉淀色彩、字体、版式与应用规则，输出可执行的规范手册</td>
+      <td><span class="tag tag-amber">核心</span></td>
+      <td>规范文档证据 + 材料核验</td>
+      <td class="ops"><a onclick="CX.toast('已打开「视觉规范构建」编辑')">编辑</a><a onclick="CX.toast('删除核心能力需业务负责人确认')">删除</a><span class="drag" title="拖拽排序">⋮⋮</span></td>
+    </tr>
+    <tr>
+      <td>项目执行落地</td>
+      <td>能推进物料从设计到制作上线，处理印刷、搭建等现场落地问题</td>
+      <td><span class="tag tag-info">重要</span></td>
+      <td>落地应用证明 + 追问执行细节</td>
+      <td class="ops"><a onclick="CX.toast('已打开「项目执行落地」编辑')">编辑</a><a onclick="CX.toast('已删除该能力，可撤销')">删除</a><span class="drag" title="拖拽排序">⋮⋮</span></td>
+    </tr>
+    <tr>
+      <td>动态视觉表达</td>
+      <td>能完成短视频封面、动效海报等动态内容，熟悉基本动效节奏</td>
+      <td><span class="tag tag-info">重要</span></td>
+      <td>动效作品 + 专业能力面试</td>
+      <td class="ops"><a onclick="CX.toast('已打开「动态视觉表达」编辑')">编辑</a><a onclick="CX.toast('已删除该能力，可撤销')">删除</a><span class="drag" title="拖拽排序">⋮⋮</span></td>
+    </tr>
+    <tr>
+      <td>跨部门协作</td>
+      <td>能与市场、产品对接需求并推动方案达成共识</td>
+      <td><span class="tag tag-gray">一般</span></td>
+      <td>协作记录 + 行为面试</td>
+      <td class="ops"><a onclick="CX.toast('已打开「跨部门协作」编辑')">编辑</a><a onclick="CX.toast('已删除该能力，可撤销')">删除</a><span class="drag" title="拖拽排序">⋮⋮</span></td>
+    </tr>
+  </table>
+  <div style="margin-top:12px;display:flex;gap:10px">
+    <button class="btn btn-ghost btn-sm" onclick="CX.toast('已新增一条空白能力，请填写具体要求')">+ 添加能力</button>
+    <button class="btn btn-ghost btn-sm" onclick="CX.openDrawer('aiDrawer')">从 AI 建议导入</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-h"><h3>04 候选人成果要求</h3><span class="more">决定候选人提交页要填什么</span></div>
+  <div class="grid g2" style="gap:20px">
+    <div>
+      <div class="req-h">必需材料 <span class="tag tag-red">未提交不可进入评审</span></div>
+      <div class="req-list">
+        <label class="check"><input type="checkbox" checked onclick="CX.toast('必需材料将出现在候选人提交页')">个人作品集 PDF（含完整项目过程）</label>
+        <label class="check"><input type="checkbox" checked onclick="CX.toast('已要求至少一个完整品牌设计案例')">至少一个完整品牌设计案例（背景—方案—成果）</label>
+      </div>
+    </div>
+    <div>
+      <div class="req-h">可选材料 <span class="tag tag-gray">补充加分</span></div>
+      <div class="req-list">
+        <label class="check"><input type="checkbox" checked onclick="CX.toast('已设为可选：落地应用证明')">落地应用证明（实拍 / 上线截图）</label>
+        <label class="check"><input type="checkbox" checked onclick="CX.toast('已设为可选：获奖证明')">获奖证明（奖项证书 / 官方名单）</label>
+        <label class="check"><input type="checkbox" onclick="CX.toast('已设为可选：动效作品')">动效作品（视频链接 / 源文件）</label>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:14px;display:flex;gap:10px">
+    <button class="btn btn-ghost btn-sm" onclick="CX.toast('已添加一项成果要求')">+ 添加要求</button>
+    <button class="btn btn-ghost btn-sm" onclick="CX.toast('已套用「视觉设计类」成果要求模板')">套用模板</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-h"><h3>05 确认与协作</h3><span class="more">发布前需业务负责人确认能力标准</span></div>
+  <table class="tb">
+    <tr><th style="width:130px">角色</th><th style="width:150px">人员</th><th style="width:110px">状态</th><th>说明</th><th style="width:120px">操作</th></tr>
+    <tr>
+      <td>HR 负责人</td>
+      <td><span class="ava ava-s ava-1" style="vertical-align:middle;margin-right:6px">韩</span>韩女士</td>
+      <td><span class="tag tag-green">已填写</span></td>
+      <td>已完成基础信息与部门业务说明，能力标准草稿 5 项</td>
+      <td class="ops"><a onclick="CX.toast('查看填写记录：2026-11-26 19:40')">查看记录</a></td>
+    </tr>
+    <tr>
+      <td>业务负责人</td>
+      <td><span class="ava ava-s ava-4" style="vertical-align:middle;margin-right:6px">李</span>李一明 · 设计中心总监</td>
+      <td><span class="tag tag-amber">待确认</span></td>
+      <td>需确认「动态视觉表达」是否作为重要能力，以及必需材料范围</td>
+      <td class="ops"><a onclick="CX.toast('确认请求已发送至 李一明，站内信 + 邮件')">发送确认请求</a></td>
+    </tr>
+    <tr>
+      <td>专业面试官</td>
+      <td><span class="ava ava-s ava-2" style="vertical-align:middle;margin-right:6px">陈</span>陈建宏 · 资深设计专家</td>
+      <td><span class="tag tag-gray">待分配</span></td>
+      <td>岗位发布后由业务负责人指定，用于专业能力评审与面试追问</td>
+      <td class="ops"><a onclick="CX.toast('请在岗位发布后分配专业面试官')">分配</a></td>
+    </tr>
+  </table>
+  <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+    <button class="btn btn-pri" onclick="CX.toast('确认请求已发送至 李一明（设计中心总监）')">发送确认请求</button>
+    <button class="btn btn-ghost" onclick="CX.toast('草稿已保存 · 2026-11-26 20:12')">保存草稿</button>
+    <span style="font-size:12px;color:var(--gray-l)">业务负责人确认后，能力标准将同步到候选人提交页与评审工作台</span>
+  </div>
+</div>
+
+<div class="drawer" id="aiDrawer">
+  <div class="hd"><h3>AI 岗位能力归纳</h3><span class="tag tag-amber">建议待确认</span><span class="x" onclick="CX.closeDrawer('aiDrawer')">✕</span></div>
+  <div class="bd">
+    <div style="font-size:13px;color:var(--gray);margin-bottom:12px">根据部门业务说明，整理出以下岗位能力建议：</div>
+    <div class="sug">
+      <div class="sh"><b>品牌视觉设计能力</b><span class="tag tag-amber">核心</span></div>
+      <p>业务说明提到"品牌视觉升级"与"品牌视觉延展"，建议要求候选人能独立完成品牌主视觉与延展设计，并保持与品牌调性一致。</p>
+      <div class="sf"><button class="btn btn-pri btn-sm" onclick="CX.toast('已添加到能力标准')">添加</button><button class="btn btn-ghost btn-sm" onclick="CX.toast('已复制为草稿，可修改后再添加')">修改</button></div>
+    </div>
+    <div class="sug">
+      <div class="sh"><b>项目落地能力</b><span class="tag tag-info">重要</span></div>
+      <p>业务说明包含"宣传物料设计"与"线下活动视觉落地"，建议要求候选人能推进物料从设计到制作上线，并处理现场落地问题。</p>
+      <div class="sf"><button class="btn btn-pri btn-sm" onclick="CX.toast('已添加到能力标准')">添加</button><button class="btn btn-ghost btn-sm" onclick="CX.toast('已复制为草稿，可修改后再添加')">修改</button></div>
+    </div>
+    <div class="sug">
+      <div class="sh"><b>跨部门协作能力</b><span class="tag tag-gray">一般</span></div>
+      <p>营销活动视觉需与市场、产品对接，建议通过行为面试了解候选人在需求冲突时的推进方式。</p>
+      <div class="sf"><button class="btn btn-pri btn-sm" onclick="CX.toast('已添加到能力标准')">添加</button><button class="btn btn-ghost btn-sm" onclick="CX.toast('已复制为草稿，可修改后再添加')">修改</button></div>
+    </div>
+    <div style="font-size:12px;color:var(--gray-l);background:var(--line-2);border-radius:8px;padding:10px 12px">
+      依据：部门业务说明（128 字）· 岗位名称 · 近 6 个月同类岗位评审记录。<br>
+      AI 建议不会自动覆盖已有能力项，添加后仍需业务负责人确认。
+    </div>
+  </div>
+  <div class="ft">
+    <button class="btn btn-pri" onclick="CX.closeDrawer('aiDrawer');CX.toast('已添加 3 条 AI 建议，待业务负责人确认')">全部添加</button>
+    <button class="btn btn-ghost" onclick="CX.toast('正在重新归纳，预计 15 秒')">重新生成</button>
+  </div>
+</div>
+
+</div></div></div>
+<script src="assets/shell.js"></script>
+</body>
+</html>

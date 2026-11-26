@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><title>承星 HRM · 面向成果型人才招聘的智能招聘与协同评审平台</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/design.css">
+<style>
+body{background:#FAF8F3}
+/* ===== 导航 ===== */
+.g-nav{position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;padding:0 56px;gap:40px;z-index:90;background:rgba(33,28,21,.55);backdrop-filter:blur(14px);border-bottom:1px solid rgba(242,237,226,.08)}
+.g-logo{display:flex;align-items:center;gap:10px}
+.g-logo .logo-mark{width:34px;height:34px;border-radius:9px;background:#2B2620;border:1px solid rgba(217,164,65,.5);position:relative}
+.g-logo .logo-mark::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:11px;transform:translate(-50%,-50%) rotate(45deg);background:var(--amber);border-radius:2px}
+.g-logo b{font-size:17px;color:#F2EDE2;letter-spacing:.5px}
+.g-links{display:flex;gap:32px;font-size:13.5px;color:rgba(242,237,226,.72)}
+.g-links a:hover{color:var(--amber)}
+.g-cta{margin-left:auto;display:flex;gap:12px;align-items:center}
+.g-cta .btn-ghost{background:transparent;border-color:rgba(242,237,226,.3);color:#F2EDE2}
+.g-cta .btn-ghost:hover{border-color:#F2EDE2;color:#F2EDE2}
+/* ===== Hero ===== */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:#211C15}
+#heroCv{position:absolute;inset:0;width:100%;height:100%}
+.hero .glow{position:absolute;width:1200px;height:1200px;right:-260px;top:-360px;background:radial-gradient(circle,rgba(217,164,65,.26) 0%,rgba(217,164,65,.08) 34%,transparent 62%);pointer-events:none}
+.hero .grain{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");pointer-events:none}
+.hero .ghost{position:absolute;left:56px;bottom:150px;font-size:120px;font-weight:800;color:rgba(242,237,226,.05);letter-spacing:6px;white-space:nowrap;pointer-events:none;line-height:1}
+.hero-in{position:relative;z-index:2;padding:140px 56px 120px;max-width:760px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--amber);border:1px solid rgba(217,164,65,.45);border-radius:999px;padding:6px 16px;margin-bottom:30px;letter-spacing:1px}
+.hero h1{font-size:64px;line-height:1.18;font-weight:800;color:#F2EDE2;margin-bottom:22px;letter-spacing:2px}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero .sub{font-size:17px;color:#C9BFA8;line-height:1.85;margin-bottom:12px;max-width:640px}
+.hero .desc{font-size:13.5px;color:#8F8571;line-height:1.9;margin-bottom:40px;max-width:620px}
+.hero .btns{display:flex;gap:16px}
+.btn-hero{background:var(--amber);color:#26221C;font-weight:700;padding:14px 36px;border-radius:10px;font-size:16px}
+.btn-hero:hover{background:var(--amber-hi);transform:translateY(-1px)}
+.btn-line{border:1px solid rgba(242,237,226,.35);color:#F2EDE2;padding:14px 30px;border-radius:10px;font-size:16px}
+.btn-line:hover{border-color:var(--amber);color:var(--amber)}
+/* 数据带 */
+.hero .strip{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;border-top:1px solid rgba(242,237,226,.1);background:rgba(33,28,21,.5);backdrop-filter:blur(10px)}
+.hero .strip .s{flex:1;padding:22px 0 24px;text-align:center;border-right:1px solid rgba(242,237,226,.07)}
+.hero .strip .s:last-child{border-right:0}
+.hero .strip b{font-size:30px;color:var(--amber);font-weight:800;font-variant-numeric:tabular-nums}
+.hero .strip i{font-style:normal;font-size:14px;color:#C9BFA8;margin-left:2px}
+.hero .strip span{display:block;font-size:12px;color:#8F8571;margin-top:4px;letter-spacing:2px}
+/* ===== 章节通用 ===== */
+.sec{max-width:1180px;margin:0 auto;padding:96px 32px}
+.sec-h{text-align:center;margin-bottom:56px}
+.sec-h .en{font-size:12px;letter-spacing:5px;color:var(--amber-deep);margin-bottom:12px}
+.sec-h h2{font-size:34px;color:var(--deep);font-weight:800;letter-spacing:2px}
+.sec-h p{font-size:14px;color:var(--gray);margin-top:12px}
+.sec-h .line{width:44px;height:3px;background:var(--amber);margin:18px auto 0;border-radius:2px}
+/* 理念 */
+.vals3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.val3{background:#fff;border:1px solid var(--line);border-radius:14px;padding:34px 30px;transition:.2s}
+.val3:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(38,34,28,.08);border-color:var(--amber-line)}
+.val3 .n{font-size:15px;color:var(--amber-deep);font-weight:800;letter-spacing:2px;margin-bottom:16px}
+.val3 h3{font-size:19px;color:var(--deep);margin-bottom:12px}
+.val3 p{font-size:13.5px;color:var(--gray);line-height:1.85}
+/* 创新 2x2 */
+.inno4{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.inno{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px 32px;display:flex;gap:22px;transition:.2s}
+.inno:hover{border-color:var(--amber);box-shadow:0 16px 40px rgba(38,34,28,.08)}
+.inno .ic{width:52px;height:52px;border-radius:12px;background:var(--amber-bg);border:1px solid var(--amber-line);display:flex;align-items:center;justify-content:center;flex:none;font-size:20px;color:var(--amber-deep);font-weight:800}
+.inno h3{font-size:17px;color:var(--deep);margin-bottom:8px}
+.inno p{font-size:13px;color:var(--gray);line-height:1.8}
+/* 界面主场（深色区） */
+.stage{background:#211C15;position:relative;overflow:hidden}
+.stage .grain{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")}
+.stage .sec-h h2{color:#F2EDE2}
+.stage .sec-h p{color:#8F8571}
+.frame{max-width:1000px;margin:0 auto;position:relative}
+.frame .win{background:#fff;border-radius:14px;box-shadow:0 40px 120px rgba(0,0,0,.5);overflow:hidden;border:1px solid rgba(242,237,226,.12)}
+.frame .bar{height:38px;background:#F1EDE4;display:flex;align-items:center;gap:6px;padding:0 16px}
+.frame .bar i{width:11px;height:11px;border-radius:50%;background:#D8D2C4}
+.frame .bar .url{margin-left:12px;flex:1;max-width:460px;background:#fff;border:1px solid var(--line);border-radius:6px;font-size:11.5px;color:var(--gray-l);padding:4px 12px;font-family:Consolas,monospace}
+.frame img{width:100%;display:block}
+.float{position:absolute;background:#fff;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.35);padding:14px 18px;font-size:12.5px;color:var(--deep);animation:float 5s ease-in-out infinite}
+.float .t{font-size:11px;color:var(--gray-l);margin-bottom:6px}
+.float.f1{left:-70px;top:22%;animation-delay:.4s}
+.float.f2{right:-80px;top:44%;animation-delay:1.6s}
+.float.f3{left:-40px;bottom:12%;animation-delay:2.6s}
+.float b{color:var(--amber-deep)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+/* 流程 */
+.chain{display:flex;align-items:flex-start}
+.chain .c{flex:1;text-align:center;position:relative;padding:0 4px}
+.chain .c .n{width:46px;height:46px;border-radius:50%;background:#fff;border:2px solid var(--amber);color:var(--amber-deep);font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:15px;position:relative;z-index:1}
+.chain .c b{font-size:14.5px;color:var(--deep);display:block;margin-bottom:6px}
+.chain .c span{font-size:11.5px;color:var(--gray-l);line-height:1.6;display:block}
+.chain .c::after{content:"";position:absolute;top:23px;left:calc(50% + 32px);width:calc(100% - 64px);height:2px;background:var(--amber-line)}
+.chain .c:last-child::after{display:none}
+/* 页面入口 */
+.pages{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pg{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:15px 18px;background:#fff;font-size:13.5px;color:var(--deep);transition:.15s}
+.pg:hover{border-color:var(--amber);box-shadow:0 8px 24px rgba(38,34,28,.07);transform:translateY(-2px)}
+.pg .tag{margin-left:auto}
+/* 页脚 */
+.g-foot{background:#1B1710;color:#8F8571;padding:56px 56px 40px;font-size:12.5px;line-height:2}
+.g-foot b{color:#C9BFA8}
+.g-foot .cols{display:flex;gap:100px;max-width:1180px;margin:0 auto}
+.g-foot .mark{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.g-foot .mark .logo-mark{width:28px;height:28px;border-radius:8px;background:#2B2620;border:1px solid rgba(217,164,65,.4);position:relative}
+.g-foot .mark .logo-mark::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%) rotate(45deg);background:var(--amber);border-radius:2px}
+@media (max-width:960px){.hero h1{font-size:40px}.hero .ghost{display:none}.vals3,.inno4,.pages{grid-template-columns:1fr 1fr}.chain{flex-wrap:wrap;gap:18px}.chain .c::after{display:none}.g-links{display:none}.float{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="g-nav">
+  <div class="g-logo"><div class="logo-mark"></div><b>承星 HRM</b></div>
+  <div class="g-links">
+    <a href="#inno">核心能力</a><a href="#stage">产品界面</a><a href="#flow">业务流程</a><a href="#pages">原型页面</a>
+  </div>
+  <div class="g-cta">
+    <a class="btn btn-ghost btn-sm" href="candidate-submit.html">候选人入口</a>
+    <a class="btn btn-pri btn-sm" href="login.html">登录 / 进入控制台</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <canvas id="heroCv"></canvas>
+  <div class="glow"></div><div class="grain"></div>
+  <div class="ghost">RESULT-FIRST HIRING</div>
+  <div class="hero-in">
+    <div class="eyebrow">✦ 成果型人才招聘 · RESULT-FIRST HIRING</div>
+    <h1>让真实成果<br>被<em>理解</em>、被<em>验证</em></h1>
+    <p class="sub">面向成果型人才招聘的智能招聘与协同评审平台。把候选人已经拥有的作品集、项目文件、视频与代码仓库，转化为招聘团队可理解、可关联、可评审的决策依据。</p>
+    <p class="desc">岗位管理 · 候选人管理 · 面试流程 · 人才库与数据分析构成基础能力；成果材料解析、岗位业务关联与证据化协同评审构成差异化能力。AI 提供线索而非结论，专业判断始终属于人。</p>
+    <div class="btns">
+      <a class="btn-hero" href="login.html">进入控制台演示</a>
+      <a class="btn-line" href="candidate-submit.html">体验候选人提交</a>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="s"><b>6</b><i>大</i><span>产品模块</span></div>
+    <div class="s"><b>4</b><i>项</i><span>核心创新</span></div>
+    <div class="s"><b>15</b><i>页</i><span>高保真界面</span></div>
+    <div class="s"><b>3</b><i>端</i><span>桌面 · 平板 · 手机</span></div>
+    <div class="s"><b>38</b><i>页</i><span>全案策划书</span></div>
+  </div>
+</section>
+
+<section class="sec reveal" id="value">
+  <div class="sec-h"><div class="en">PRODUCT PRINCIPLES</div><h2>三条产品原则</h2><div class="line"></div></div>
+  <div class="vals3">
+    <div class="val3"><div class="n">01</div><h3>先整理，再阅读</h3><p>HR 不必逐份通读 50 页作品集。AI 先拆解为关键词标签与项目摘要，看完标签即知大概，想深究再点开原始材料。</p></div>
+    <div class="val3"><div class="n">02</div><h3>关联必须有依据</h3><p>任何"该候选人与岗位相关"的判断，都能回到 PDF 页码、视频时间点、代码文件的具体位置，可查、可纠、可审计。</p></div>
+    <div class="val3"><div class="n">03</div><h3>AI 提供线索而非结论</h3><p>不以单一算法分数自动淘汰候选人。评价、分歧与录用决策，始终由专业的人完成并留痕。</p></div>
+  </div>
+</section>
+
+<section class="sec reveal" id="inno" style="padding-top:20px">
+  <div class="sec-h"><div class="en">CORE CAPABILITIES</div><h2>四大创新，串成一条链路</h2><p>差异化来自环节的连续整合，而不是单点技术宣称</p><div class="line"></div></div>
+  <div class="inno4">
+    <div class="inno"><div class="ic">共</div><div><h3>岗位能力标准共创</h3><p>业务负责人用日常语言描述部门业务，AI 归纳能力建议，HR 与业务共同确认——把模糊的招聘需求变成可评估的标准，维度随时可增。</p></div></div>
+    <div class="inno"><div class="ic">拆</div><div><h3>成果结构化识别</h3><p>候选人提交的不是文件，而是有来源、参与方式、落地状态、成果证明、核实状态的项目档案；无法归类的进入「其他」，不强行打标。</p></div></div>
+    <div class="inno"><div class="ic">证</div><div><h3>AI 解析与证据定位</h3><p>从 PDF、PPT、网页、代码中拆解关键词标签，每条标签可回溯原始证据位置——不点开作品集，也能横向看懂一批候选人。</p></div></div>
+    <div class="inno"><div class="ic">评</div><div><h3>证据化协同评审</h3><p>HR、业务负责人、专业面试官围绕同一份成果评价、引用证据、记录分歧，最终由人作出招聘决策并全程留痕。</p></div></div>
+  </div>
+</section>
+
+<section class="stage" id="stage">
+  <div class="grain"></div>
+  <div class="sec-h reveal" style="padding-top:96px"><div class="en">PRODUCT INTERFACE</div><h2>产品界面一览</h2><p>AI 成果解析报告 · 每条结论可回溯原始证据</p><div class="line"></div></div>
+  <div style="position:relative;padding-bottom:110px">
+    <div class="frame reveal">
+      <div class="win"><div class="bar"><i></i><i></i><i></i><div class="url">chengxing-hrm · 作品与成果评估 · AI 成果解析报告</div></div><img src="design-shot.png" alt="产品界面"></div>
+      <div class="float f1"><div class="t">AI 关键词标签</div><b>品牌视觉系统</b> ×6 证据</div>
+      <div class="float f2"><div class="t">证据定位</div>作品集 <b>第 12 页</b> · 品牌主视觉</div>
+      <div class="float f3"><div class="t">待核实</div>个人贡献范围 <b>待核实</b> · 已发起补充</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec reveal" id="flow">
+  <div class="sec-h"><div class="en">WORKFLOW</div><h2>端到端业务闭环</h2><div class="line"></div></div>
+  <div class="chain">
+    <div class="c"><div class="n">1</div><b>岗位定义</b><span>业务说明与能力标准共创</span></div>
+    <div class="c"><div class="n">2</div><b>成果提交</b><span>动态表单 + 授权确认</span></div>
+    <div class="c"><div class="n">3</div><b>AI 解析</b><span>关键词标签与证据索引</span></div>
+    <div class="c"><div class="n">4</div><b>初步筛选</b><span>看标签懂大概</span></div>
+    <div class="c"><div class="n">5</div><b>协同评审</b><span>能力维度 + 引用证据</span></div>
+    <div class="c"><div class="n">6</div><b>招聘决策</b><span>共识分歧汇总，人来决策</span></div>
+    <div class="c"><div class="n">7</div><b>人才沉淀</b><span>按授权归档与保留</span></div>
+  </div>
+</section>
+
+<section class="sec reveal" id="pages" style="padding-top:20px">
+  <div class="sec-h"><div class="en">PROTOTYPE</div><h2>可交互原型页面</h2><p>全部为模拟数据 · 控制台内可通过侧栏与顶栏「首页 / 退出」自由往返</p><div class="line"></div></div>
+  <div class="pages">
+    <a class="pg" href="workbench.html">招聘工作台<span class="tag tag-gray">中</span></a>
+    <a class="pg" href="jobs.html">岗位与需求<span class="tag tag-gray">中</span></a>
+    <a class="pg" href="standard.html">岗位能力标准共创<span class="tag tag-info">高</span></a>
+    <a class="pg" href="candidates.html">候选人管理 · 渠道导入<span class="tag tag-gray">中</span></a>
+    <a class="pg" href="canddetail.html">候选人详情<span class="tag tag-amber">最高</span></a>
+    <a class="pg" href="outcomes.html">作品与成果评估<span class="tag tag-amber">最高</span></a>
+    <a class="pg" href="aireport.html">AI 成果解析报告<span class="tag tag-amber">最高</span></a>
+    <a class="pg" href="evidence.html">项目详情与证据定位<span class="tag tag-amber">最高</span></a>
+    <a class="pg" href="review.html">专业评审工作台<span class="tag tag-amber">最高</span></a>
+    <a class="pg" href="decision.html">招聘决策汇总<span class="tag tag-info">高</span></a>
+    <a class="pg" href="analytics.html">人才库与数据分析<span class="tag tag-gray">中</span></a>
+    <a class="pg" href="candidate-submit.html">候选人端 · 动态表单<span class="tag tag-amber">最高</span></a>
+  </div>
+</section>
+
+<footer class="g-foot">
+  <div class="cols">
+    <div><div class="mark"><div class="logo-mark"></div><b style="font-size:15px">承星 HRM</b></div>面向成果型人才招聘的智能招聘与协同评审平台<br>B 端 SaaS 产品策划 + UI/UX 设计</div>
+    <div><b>项目性质</b><br>个人概念设计项目（模拟商业项目）<br>页面与数据均为演示用途，未经真实上线验证</div>
+    <div><b>配套资产</b><br>全案策划书 38 页 · 高保真设计 23 图<br>可交互原型 15 页 · 设计系统一套</div>
+  </div>
+</footer>
+
+<script src="assets/shell.js"></script>
+<script src="assets/three.min.js"></script>
+<script>
+(function(){
+  const cv=document.getElementById('heroCv'); if(!cv||!window.THREE) return;
+  const fit=()=>cv.parentElement.getBoundingClientRect();
+  const renderer=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
+  renderer.setSize(fit().width,fit().height); renderer.setPixelRatio(Math.min(2,devicePixelRatio||1));
+  const scene=new THREE.Scene();
+  const cam=new THREE.PerspectiveCamera(46,fit().width/fit().height,0.1,120); cam.position.set(0,0,14);
+  scene.add(new THREE.AmbientLight(0xE8DCC2,0.8));
+  const dl=new THREE.DirectionalLight(0xFFF3DC,1.0); dl.position.set(5,7,9); scene.add(dl);
+  const pl=new THREE.PointLight(0xD9A441,1.6,40); pl.position.set(-4,-3,6); scene.add(pl);
+  const grp=new THREE.Group(); scene.add(grp); grp.position.x=4.2;
+  const star=new THREE.Mesh(new THREE.IcosahedronGeometry(2.3,0),
+    new THREE.MeshStandardMaterial({color:0xD9A441,flatShading:true,roughness:0.3,metalness:0.6,emissive:0x4a3208}));
+  grp.add(star);
+  const halo=new THREE.Mesh(new THREE.IcosahedronGeometry(3.2,0),
+    new THREE.MeshBasicMaterial({color:0xB8935A,wireframe:true,transparent:true,opacity:0.28}));
+  grp.add(halo);
+  function cardTex(type){
+    const c=document.createElement('canvas'); c.width=256; c.height=168; const x=c.getContext('2d');
+    x.fillStyle='#F7F5F0'; x.fillRect(0,0,256,168); x.strokeStyle='#E7E2D8'; x.strokeRect(2,2,252,164);
+    x.fillStyle='#2B2620'; x.fillRect(2,2,252,24); x.fillStyle='#F2EDE2'; x.font='12px sans-serif';
+    if(type===0){ x.fillText('Portfolio.pdf',10,18); x.fillStyle='#E7E2D8';
+      for(let i=0;i<5;i++) x.fillRect(16,44+i*22,224-(i%3)*60,10); x.fillStyle='#D9A441'; x.fillRect(16,44+44,90,10); }
+    if(type===1){ x.fillText('showreel.mp4',10,18); x.fillStyle='#211D17'; x.fillRect(8,34,240,126);
+      x.fillStyle='#D9A441'; x.beginPath(); x.moveTo(116,84); x.lineTo(148,97); x.lineTo(116,110); x.fill(); }
+    if(type===2){ x.fillText('repo · main.js',10,18); x.font='11px monospace';
+      const cols=['#6E675C','#A8742A','#4E7A57','#B4503C','#6E675C','#8A7A5C'];
+      for(let i=0;i<6;i++){ x.fillStyle=cols[i]; x.fillRect(14,40+i*18,120+((i*53)%110),8); } }
+    return new THREE.CanvasTexture(c);
+  }
+  const cards=[];
+  for(let i=0;i<3;i++){
+    const m=new THREE.Mesh(new THREE.PlaneGeometry(3.7,2.45),
+      new THREE.MeshBasicMaterial({map:cardTex(i),transparent:true,opacity:0.97,side:THREE.DoubleSide}));
+    m.userData={a:i*2.1,rad:2.4,sp:0.09+i*0.022}; grp.add(m); cards.push(m);
+  }
+  const pg=new THREE.BufferGeometry(); const N=260; const pos=new Float32Array(N*3);
+  for(let i=0;i<N;i++){ pos[i*3]=(Math.random()-0.5)*34; pos[i*3+1]=(Math.random()-0.5)*18; pos[i*3+2]=(Math.random()-0.5)*14-3; }
+  pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  scene.add(new THREE.Points(pg,new THREE.PointsMaterial({color:0xB8A87E,size:0.06,transparent:true,opacity:0.65})));
+  let mx=0,my=0; addEventListener('mousemove',e=>{ mx=e.clientX/innerWidth-0.5; my=e.clientY/innerHeight-0.5; });
+  addEventListener('resize',()=>{ renderer.setSize(fit().width,fit().height); cam.aspect=fit().width/fit().height; cam.updateProjectionMatrix(); });
+  (function loop(t){
+    requestAnimationFrame(loop); const s=(t||0)*0.001;
+    star.rotation.y=s*0.5; star.rotation.x=Math.sin(s*0.3)*0.25; halo.rotation.y=-s*0.22; halo.rotation.z=s*0.1;
+    cards.forEach(c=>{ const a=c.userData.a+s*c.userData.sp;
+      c.position.set(Math.cos(a)*c.userData.rad, Math.sin(a*0.7+s*0.2)*1.5, Math.sin(a)*c.userData.rad*0.8-1);
+      c.lookAt(cam.position); });
+    cam.position.x+=(mx*2.2-cam.position.x)*0.04; cam.position.y+=(-my*1.4-cam.position.y)*0.04;
+    cam.lookAt(0,0,0); renderer.render(scene,cam);
+  })(0);
+})();
+</script>
+</body>
+</html>
